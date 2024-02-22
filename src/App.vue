@@ -1,6 +1,11 @@
-<script setup></script>
+<script setup>
+import navbar from "./components/Navbar.vue";
+import munch from "./components/MunchButton.vue";
+</script>
+
 <template>
-  <h1>Hello World</h1>
+  <navbar />
+  <munch />
 </template>
 
 <style></style>
