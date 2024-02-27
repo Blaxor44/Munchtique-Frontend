@@ -1,27 +1,29 @@
+<script>
+export default {
+  name: "Navbar", // optional: give your component a name
+
+  // Your component options go here
+};
+</script>
+
 <template>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
+    style="height: 70px"
+  >
     <!-- Container wrapper -->
     <div class="container">
-      <!-- Navbar brand -->
-      <a class="navbar-brand" href="#"><i class="fab fa-linkedin fa-2x"></i></a>
-      <!-- Search form -->
-      <form class="input-group" style="width: 400px">
-        <input
-          type="search"
-          class="form-control"
-          placeholder="Type query"
-          aria-label="Search"
-        />
-        <button
-          class="btn btn-outline-primary"
-          type="button"
-          data-mdb-ripple-color="dark"
-          style="padding: 0.45rem 1.5rem 0.35rem"
-        >
-          Search
-        </button>
-      </form>
+      <!-- New image holder -->
+      <a class="navbar-brand" href="#"
+        ><img
+          src="\src\components\icons\donut.jpg"
+          alt="Logo"
+          class="h-12"
+          width="55"
+          height="55"
+        />Munchtique</a
+      >
 
       <!-- Toggle button -->
       <button
@@ -38,8 +40,27 @@
 
       <!-- Collapsible wrapper -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- Left links -->
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <!-- Search form (moved to the middle) -->
+        <form class="input-group mx-auto" style="width: 400px">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="Type query"
+            aria-label="Search"
+          />
+          <button
+            class="btn btn-outline-primary"
+            type="button"
+            data-mdb-ripple-color="dark"
+            style="padding: 0.45rem 1.5rem 0.35rem"
+          >
+            Search
+          </button>
+        </form>
+
+        <!-- Right part (moved to the far right and larger font) -->
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-size: 18px">
+          <!-- Add your right-side navigation items here -->
           <li class="nav-item">
             <a
               class="nav-link active d-flex flex-column text-center"
@@ -95,7 +116,7 @@
               aria-expanded="false"
             >
               <img
-                src="https://mdbootstrap.com/img/Photos/Avatars/img%20(9).jpg"
+                src="\src\components\icons\profile.png"
                 class="rounded-circle"
                 height="30"
                 alt=""
@@ -109,7 +130,6 @@
             </ul>
           </li>
         </ul>
-        <!-- Left links -->
       </div>
       <!-- Collapsible wrapper -->
     </div>
@@ -140,7 +160,7 @@
 
 /* Color of the navbar AFTER scroll */
 .navbar-scrolled {
-  background-color: #fff;
+  background-color: darkgrey;
 }
 
 /* An optional height of the navbar AFTER scroll */
