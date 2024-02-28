@@ -1,8 +1,6 @@
 <script>
 export default {
-  name: "Navbar", // optional: give your component a name
-
-  // Your component options go here
+  name: "Navbar",
 };
 </script>
 
