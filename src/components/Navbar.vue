@@ -83,7 +83,7 @@ export default {
               aria-current="page"
               href="#"
               ><i class="fas fa-briefcase fa-lg"></i
-              ><span class="small">Jobs</span></a
+              ><span class="small">Poso</span></a
             >
           </li>
           <li class="nav-item">

@@ -1,51 +1,67 @@
 <script>
+import { RouterLink } from "vue-router";
+
 export default {
   methods: {
     toggleMenu() {
       this.$refs.menu.classList.toggle("active");
     },
+    getIcons() {
+      return [
+        { index: 0, src: "/src/components/icons/pizza.png", route: "pizza" },
+        {
+          index: 1,
+          src: "/src/components/icons/hamburger.png",
+          route: "hamburger",
+        },
+        {
+          index: 2,
+          src: "/src/components/icons/tortilla.png",
+          route: "tortilla",
+        },
+        { index: 3, src: "/src/components/icons/hotdog.png", route: "hotdog" },
+        {
+          index: 4,
+          src: "/src/components/icons/frenchfries.png",
+          route: "frenchfries",
+        },
+        { index: 5, src: "/src/components/icons/steak.png", route: "steak" },
+        { index: 6, src: "/src/components/icons/sushi.png", route: "sushi" },
+        { index: 7, src: "/src/components/icons/fruit.png", route: "fruit" },
+        {
+          index: 8,
+          src: "/src/components/icons/dessert.png",
+          route: "dessert",
+        },
+        { index: 9, src: "/src/components/icons/cola.png", route: "cola" },
+      ];
+    },
   },
+
   name: "MunchButton",
+  components: {
+    RouterLink,
+  },
 };
 </script>
 
 <template>
   <div class="menu" ref="menu">
     <div class="toggle" ref="toggle" @click="toggleMenu">
-      <img src="\src\components\icons\scooter.png" />
+      <img src="/src/components/icons/scooter.png" />
     </div>
-    <li style="--i: 0">
-      <a href="#"><img src="\src\components\icons\pizza.png" /></a>
-    </li>
-    <li style="--i: 1">
-      <a href="#"><img src="\src\components\icons\hamburger.png" /></a>
-    </li>
-    <li style="--i: 2">
-      <a href="#"><img src="\src\components\icons\tortilla.png" /></a>
-    </li>
-    <li style="--i: 3">
-      <a href="#"><img src="\src\components\icons\hotdog.png" /></a>
-    </li>
-    <li style="--i: 4">
-      <a href="#"><img src="\src\components\icons\frenchfries.png" /></a>
-    </li>
-    <li style="--i: 5">
-      <a href="#"><img src="\src\components\icons\steak.png" /></a>
-    </li>
-    <li style="--i: 6">
-      <a href="#"><img src="\src\components\icons\sushi.png" /></a>
-    </li>
-    <li style="--i: 7">
-      <a href="#"><img src="\src\components\icons\fruit.png" /></a>
-    </li>
-    <li style="--i: 8">
-      <a href="#"><img src="\src\components\icons\dessert.png" /></a>
-    </li>
-    <li style="--i: 9">
-      <a href="#"><img src="\src\components\icons\cola.png" /></a>
+    <li
+      v-for="icon in getIcons()"
+      :key="icon.index"
+      :style="{ '--i': icon.index }"
+    >
+      <router-link :to="`/${icon.route}`">
+        <img :src="icon.src" />
+      </router-link>
     </li>
   </div>
 </template>
+
 <style>
 * {
   margin: 0;
