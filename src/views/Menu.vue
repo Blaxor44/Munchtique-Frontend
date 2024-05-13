@@ -3,3 +3,9 @@
     <h1>Menu</h1>
   </div>
 </template>
+
+<style scoped>
+.menu{
+background-color: white
+}
+</style>

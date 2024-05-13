@@ -14,3 +14,5 @@ export default {
   <SideContent />
   <MunchButton />
 </template>
+
+<style></style>
