@@ -15,7 +15,7 @@ export default {
       <!-- New image holder -->
       <a class="navbar-brand" href="#"
         ><img
-          src="\src\components\icons\donut.jpg"
+          src="\src\components\icons\donut2.png"
           alt="Logo"
           class="h-12"
           width="55"
@@ -43,7 +43,7 @@ export default {
           <input
             type="search"
             class="form-control"
-            placeholder="Type query"
+            placeholder="Munch..?"
             aria-label="Search"
           />
           <button

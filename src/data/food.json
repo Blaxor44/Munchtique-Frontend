@@ -1,0 +1,101 @@
+[
+    {
+        "name": "Classic Burger",
+        "type": "Burger",
+        "price": 9.99
+    },
+    {
+        "name": "Cheeseburger",
+        "type": "Burger",
+        "topping": "Cheese",
+        "price": 10.99
+    },
+    {
+        "name": "Veggie Burger",
+        "type": "Burger",
+        "price": 8.49
+    },
+    {
+        "name": "Chicken Burger",
+        "type": "Burger",
+        "price": 9.99
+    }
+        {
+        "name": "Margherita Pizza",
+        "type": "Pizza",
+        "toppings": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Fresh Basil"
+        ],
+        "price": 12.99
+    },
+    {
+        "name": "Pepperoni Pizza",
+        "type": "Pizza",
+        "toppings": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Pepperoni"
+        ],
+        "price": 14.99
+    },
+    {
+        "name": "Vegetarian Pizza",
+        "type": "Pizza",
+        "toppings": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Mixed Vegetables"
+        ],
+        "price": 13.49
+    },
+    {
+        "name": "Hawaiian Pizza",
+        "type": "Pizza",
+        "toppings": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Ham",
+            "Pineapple"
+        ],
+        "price": 15.99
+    },
+    {
+        "name": "Capricciosa Pizza",
+        "type": "Pizza",
+        "toppings": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Ham",
+            "Artichokes",
+            "Mushrooms"
+        ],
+        "price": 16.49
+    },
+    {
+        "name": "Quattro Stagioni Pizza",
+        "type": "Pizza",
+        "toppings": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Ham",
+            "Artichokes",
+            "Olives",
+            "Mushrooms",
+            "Anchovies"
+        ],
+        "price": 17.49
+    },
+    {
+        "name": "Calzone",
+        "type": "Pizza",
+        "toppings": [
+            "Tomato Sauce",
+            "Mozzarella Cheese",
+            "Ham",
+            "Mushrooms"
+        ],
+        "price": 14.99
+    }
+]
