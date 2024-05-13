@@ -19,8 +19,8 @@
         "name": "Chicken Burger",
         "type": "Burger",
         "price": 9.99
-    }
-        {
+    },
+    {
         "name": "Margherita Pizza",
         "type": "Pizza",
         "toppings": [
@@ -97,7 +97,7 @@
             "Mushrooms"
         ],
         "price": 14.99
-    }
+    },
     {
         "name": "Beef Taco",
         "type": "Wrap",
@@ -144,7 +144,7 @@
             "Cheese"
         ],
         "price": 6.99
-    }
+    },
     {
         "name": "Classic Hotdog",
         "type": "Hotdog",
@@ -187,8 +187,8 @@
             "Celery Salt"
         ],
         "price": 3.99
-    }
-      {
+    },
+    {
         "name": "Classic French Fries",
         "type": "French Fries",
         "size": "Regular",
@@ -226,8 +226,8 @@
             "Jalapenos"
         ],
         "price": 4.99
-    }
-      {
+    },
+    {
         "name": "Grilled Steak",
         "type": "Meat",
         "description": "Juicy grilled steak served with roasted vegetables and mashed potatoes.",
@@ -250,7 +250,7 @@
         "type": "Meat",
         "description": "Pork tenderloin wrapped in crispy bacon, served with maple-glazed carrots and rice pilaf.",
         "price": 13.99
-    }
+    },
     {
         "name": "California Roll",
         "type": "Sushi",
@@ -293,7 +293,7 @@
             "Nori seaweed"
         ],
         "price": 12.99
-    }
+    },
     {
         "name": "Apple",
         "type": "Fruit",
@@ -317,8 +317,8 @@
         "type": "Fruit",
         "description": "Juicy and sweet strawberry.",
         "price": 1.29
-    }
-      {
+    },
+    {
         "name": "Cola",
         "type": "Drink",
         "description": "Classic cola soda, fizzy and refreshing.",
@@ -365,7 +365,7 @@
         "type": "Drink",
         "description": "Rich and buttery Chardonnay with notes of vanilla and oak.",
         "price": 8.49
-    }
+    },
     {
         "name": "Chocolate Cake",
         "type": "Dessert",

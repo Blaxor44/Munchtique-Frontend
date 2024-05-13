@@ -62,7 +62,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style>
 * {
   margin: 0;
   padding: 0;
@@ -110,8 +110,8 @@ body {
 
 .toggle {
   position: absolute;
-  width: 200px;
-  height: 200px;
+  width: 40%;
+  height: 40%;
   background: linear-gradient(45deg, #0f0e0e, #ff1252);
   display: flex;
   justify-content: center;

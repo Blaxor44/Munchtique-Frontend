@@ -4,8 +4,5 @@
   </div>
 </template>
 
-<style scoped>
-.menu{
-background-color: white
-}
+<style>
 </style>
