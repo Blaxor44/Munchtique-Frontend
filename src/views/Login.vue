@@ -13,7 +13,7 @@
             <div class="mb-md-5 mt-md-4 pb-5">
                 <p class="navbar-brand" href="#"
         ><img
-          src="\src\components\icons\donut2.png"
+          src="/src/components/icons/donut2.png"
           alt="Logo"
           class="h-12"
           width="100"

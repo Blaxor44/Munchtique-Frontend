@@ -2,23 +2,27 @@
     {
         "name": "Classic Burger",
         "type": "Burger",
-        "price": 9.99
+        "price": 9.99,
+        "image": "/src/components/icons/classicburger.png"
     },
     {
         "name": "Cheeseburger",
         "type": "Burger",
         "topping": "Cheese",
-        "price": 10.99
+        "price": 10.99,
+        "image": "/src/components/icons/cheeseburger.png"
     },
     {
         "name": "Veggie Burger",
         "type": "Burger",
-        "price": 8.49
+        "price": 8.49,
+        "image": "/src/components/icons/veggieburger.jpg"
     },
     {
         "name": "Chicken Burger",
         "type": "Burger",
-        "price": 9.99
+        "price": 9.99,
+        "image": "/src/components/icons/chickenburger.jpg"
     },
     {
         "name": "Margherita Pizza",
@@ -28,7 +32,8 @@
             "Mozzarella Cheese",
             "Fresh Basil"
         ],
-        "price": 12.99
+        "price": 12.99,
+        "image": "/src/components/icons/margherita.jpg"
     },
     {
         "name": "Pepperoni Pizza",
@@ -38,7 +43,8 @@
             "Mozzarella Cheese",
             "Pepperoni"
         ],
-        "price": 14.99
+        "price": 14.99,
+        "image": "/src/components/icons/pepperonipizza.jpg"
     },
     {
         "name": "Vegetarian Pizza",
@@ -48,7 +54,8 @@
             "Mozzarella Cheese",
             "Mixed Vegetables"
         ],
-        "price": 13.49
+        "price": 13.49,
+        "image": "/src/components/icons/vegetarianpizza.jpg"
     },
     {
         "name": "Hawaiian Pizza",
@@ -59,7 +66,8 @@
             "Ham",
             "Pineapple"
         ],
-        "price": 15.99
+        "price": 15.99,
+        "image": "/src/components/icons/hawaiianpizza.jpg"
     },
     {
         "name": "Capricciosa Pizza",
@@ -71,7 +79,8 @@
             "Artichokes",
             "Mushrooms"
         ],
-        "price": 16.49
+        "price": 16.49,
+        "image": "/src/components/icons/capricciosapizza.jpg"
     },
     {
         "name": "Quattro Stagioni Pizza",
@@ -85,7 +94,8 @@
             "Mushrooms",
             "Anchovies"
         ],
-        "price": 17.49
+        "price": 17.49,
+        "image": "/src/components/icons/quattropizza.jpg"
     },
     {
         "name": "Calzone",
@@ -96,7 +106,8 @@
             "Ham",
             "Mushrooms"
         ],
-        "price": 14.99
+        "price": 14.99,
+        "image": "/src/components/icons/calzonepizza.jpg"
     },
     {
         "name": "Beef Taco",
@@ -107,7 +118,8 @@
             "Tomato",
             "Cheddar Cheese"
         ],
-        "price": 3.99
+        "price": 3.99,
+        "image": "/src/components/icons/beeftaco.jpg"
     },
     {
         "name": "Chicken Fajita Wrap",
@@ -118,7 +130,8 @@
             "Guacamole",
             "Sour Cream"
         ],
-        "price": 5.49
+        "price": 5.49,
+        "image": "/src/components/icons/chickenwrap"
     },
     {
         "name": "Vegetarian Taco",
@@ -130,7 +143,8 @@
             "Salsa",
             "Cilantro"
         ],
-        "price": 3.49
+        "price": 3.49,
+        "image": "/src/components/icons/vegetariantaco.jpg"
     },
     {
         "name": "Shrimp Burrito",
@@ -143,7 +157,8 @@
             "Lettuce",
             "Cheese"
         ],
-        "price": 6.99
+        "price": 6.99,
+        "image": "/src/components/icons/shrimpburrito.jpg"
     },
     {
         "name": "Classic Hotdog",
@@ -153,7 +168,8 @@
             "Mustard",
             "Relish"
         ],
-        "price": 2.99
+        "price": 2.99,
+        "image": "/src/components/icons/classichotdog.jpg"
     },
     {
         "name": "Chili Cheese Hotdog",
@@ -163,7 +179,8 @@
             "Cheddar Cheese",
             "Onions"
         ],
-        "price": 3.49
+        "price": 3.49,
+        "image": "/src/components/icons/chilicheesehotdog.jpg"
     },
     {
         "name": "New York Style Hotdog",
@@ -172,7 +189,8 @@
             "Sauerkraut",
             "Spicy Brown Mustard"
         ],
-        "price": 3.29
+        "price": 3.29,
+        "image": "/src/components/icons/nychotdog.jpg"
     },
     {
         "name": "Chicago Style Hotdog",
@@ -186,13 +204,15 @@
             "Sport Peppers",
             "Celery Salt"
         ],
-        "price": 3.99
+        "price": 3.99,
+        "image": "/src/components/icons/chicagohotdog.jpg"
     },
     {
         "name": "Classic French Fries",
         "type": "French Fries",
         "size": "Regular",
-        "price": 2.99
+        "price": 2.99,
+        "image": "/src/components/icons/classicfrenchfries.jpg"
     },
     {
         "name": "Cheese Fries",
@@ -203,7 +223,8 @@
             "Bacon Bits",
             "Green Onions"
         ],
-        "price": 4.49
+        "price": 4.49,
+        "image": "/src/components/icons/cheesefries.jpg"
     },
     {
         "name": "Garlic Parmesan Fries",
@@ -214,7 +235,8 @@
             "Garlic",
             "Parsley"
         ],
-        "price": 3.49
+        "price": 3.49,
+        "image": "/src/components/icons/garlicparmesanfries.jpg"
     },
     {
         "name": "Chili Cheese Fries",
@@ -225,31 +247,36 @@
             "Cheddar Cheese",
             "Jalapenos"
         ],
-        "price": 4.99
+        "price": 4.99,
+        "image": "/src/components/icons/chilicheesefries.jpg"
     },
     {
         "name": "Grilled Steak",
         "type": "Meat",
         "description": "Juicy grilled steak served with roasted vegetables and mashed potatoes.",
-        "price": 15.99
+        "price": 15.99,
+        "image": "/src/components/icons/grillsteak.jpg"
     },
     {
         "name": "BBQ Ribs",
         "type": "Meat",
         "description": "Tender BBQ ribs smothered in tangy barbecue sauce, served with coleslaw and cornbread.",
-        "price": 14.49
+        "price": 14.49,
+        "image": "/src/components/icons/bbqribs.jpg"
     },
     {
         "name": "Roast Chicken",
         "type": "Meat",
         "description": "Herb-roasted chicken served with garlic roasted potatoes and steamed vegetables.",
-        "price": 12.99
+        "price": 12.99,
+        "image": "/src/components/icons/roastchicken.jpg"
     },
     {
         "name": "Bacon-Wrapped Pork Tenderloin",
         "type": "Meat",
         "description": "Pork tenderloin wrapped in crispy bacon, served with maple-glazed carrots and rice pilaf.",
-        "price": 13.99
+        "price": 13.99,
+        "image": "/src/components/icons/baconpork.jpg"
     },
     {
         "name": "California Roll",
@@ -261,7 +288,8 @@
             "Sushi rice",
             "Nori seaweed"
         ],
-        "price": 8.99
+        "price": 8.99,
+        "image": "/src/components/icons/californiaroll.jpg"
     },
     {
         "name": "Spicy Tuna Roll",
@@ -273,13 +301,15 @@
             "Sushi rice",
             "Nori seaweed"
         ],
-        "price": 9.49
+        "price": 9.49,
+        "image": "/src/components/icons/spicytunaroll.jpg"
     },
     {
         "name": "Salmon Nigiri",
         "type": "Sushi",
         "description": "Fresh salmon slices atop bite-sized rice balls.",
-        "price": 2.99
+        "price": 2.99,
+        "image": "/src/components/icons/salmonroll.jpg"
     },
     {
         "name": "Dragon Roll",
@@ -292,102 +322,119 @@
             "Sushi rice",
             "Nori seaweed"
         ],
-        "price": 12.99
+        "price": 12.99,
+        "image": "/src/components/icons/dragonroll.jpg"
     },
     {
         "name": "Apple",
         "type": "Fruit",
         "description": "Crisp and juicy apple.",
-        "price": 0.99
+        "price": 0.99,
+        "image": "/src/components/icons/apple.jpg"
     },
     {
         "name": "Banana",
         "type": "Fruit",
         "description": "Sweet and creamy banana.",
-        "price": 0.49
+        "price": 0.49,
+        "image": "/src/components/icons/banana.jpg"
     },
     {
         "name": "Orange",
         "type": "Fruit",
         "description": "Refreshing and citrusy orange.",
-        "price": 0.79
+        "price": 0.79,
+        "image": "/src/components/icons/orange.jpg"
     },
     {
         "name": "Strawberry",
         "type": "Fruit",
         "description": "Juicy and sweet strawberry.",
-        "price": 1.29
+        "price": 1.29,
+        "image": "/src/components/icons/strawberry.jpg"
     },
     {
         "name": "Cola",
         "type": "Drink",
         "description": "Classic cola soda, fizzy and refreshing.",
-        "price": 1.49
+        "price": 1.49,
+        "image": "/src/components/icons/cola.jpg"
     },
     {
         "name": "Lemonade",
         "type": "Drink",
         "description": "Homemade lemonade, tangy and sweet.",
-        "price": 1.99
+        "price": 1.99,
+        "image": "/src/components/icons/lemonade.jpg"
     },
     {
         "name": "Iced Tea",
         "type": "Drink",
         "description": "Refreshing iced tea, brewed with hints of lemon.",
-        "price": 1.79
+        "price": 1.79,
+        "image": "/src/components/icons/icedtea.jpg"
     },
     {
         "name": "Orange Juice",
         "type": "Drink",
         "description": "Freshly squeezed orange juice, packed with vitamin C.",
-        "price": 2.29
+        "price": 2.29,
+        "image": "/src/components/icons/orangejuice.jpg"
     },
     {
         "name": "Beer - Lager",
         "type": "Drink",
         "description": "Crisp and refreshing lager beer.",
-        "price": 3.99
+        "price": 3.99,
+        "image": "/src/components/icons/beerlager.JPG"
     },
     {
         "name": "Beer - IPA",
         "type": "Drink",
         "description": "Bold and hoppy India Pale Ale.",
-        "price": 4.49
+        "price": 4.49,
+        "image": "/src/components/icons/beeripa.jpg"
     },
     {
         "name": "Red Wine - Cabernet Sauvignon",
         "type": "Drink",
         "description": "Full-bodied red wine with flavors of blackcurrant and cedar.",
-        "price": 9.99
+        "price": 9.99,
+        "image": "/src/components/icons/redwine.jpg"
     },
     {
         "name": "White Wine - Chardonnay",
         "type": "Drink",
         "description": "Rich and buttery Chardonnay with notes of vanilla and oak.",
-        "price": 8.49
+        "price": 8.49,
+        "image": "/src/components/icons/whitewine.jpg"
     },
     {
         "name": "Chocolate Cake",
         "type": "Dessert",
         "description": "Decadent chocolate cake with layers of rich frosting.",
-        "price": 4.99
+        "price": 4.99,
+        "image": "/src/components/icons/chococake.jpg"
     },
     {
         "name": "Cheesecake",
         "type": "Dessert",
         "description": "Creamy cheesecake with a graham cracker crust, topped with fresh berries.",
-        "price": 5.49
+        "price": 5.49,
+        "image": "/src/components/icons/cheesecake.jpg"
     },
     {
         "name": "Tiramisu",
         "type": "Dessert",
         "description": "Classic Italian dessert made with layers of espresso-soaked ladyfingers and mascarpone cheese.",
-        "price": 6.99
+        "price": 6.99,
+        "image": "/src/components/icons/tiramisu.jpg"
     },
     {
         "name": "Fruit Tart",
         "type": "Dessert",
         "description": "Buttery tart crust filled with vanilla custard and topped with assorted fresh fruit.",
-        "price": 4.79
+        "price": 4.79,
+        "image": "/src/components/icons/fruittart.jpg"
     }
 ]
