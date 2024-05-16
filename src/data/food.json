@@ -131,7 +131,7 @@
             "Sour Cream"
         ],
         "price": 5.49,
-        "image": "/src/components/icons/chickenwrap"
+        "image": "/src/components/icons/chickenwrap.jpg"
     },
     {
         "name": "Vegetarian Taco",
