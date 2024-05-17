@@ -1,10 +1,11 @@
 <script>
 import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
     return {
-    items: [],
+      items: [],
       selectedCategory: 'All',
       categories: ['All', 'Burger', 'Pizza', 'Wrap', 'Hotdog', 'French Fries', 'Meat', 'Sushi', 'Fruit', 'Drink', 'Dessert']
     };
@@ -22,6 +23,7 @@ export default {
     this.fetchItems(); // Call the fetchItems function on mount
   },
   methods: {
+    ...mapActions(['addToCart']),
     fetchItems() {
       axios
         .get("/src/data/food.json") // Adjust the path if necessary
@@ -36,9 +38,11 @@ export default {
 };
 </script>
 
+
+
 <template>
-    <div class="container">
-        <!-- Dropdown menu to select category -->
+  <div class="container">
+    <!-- Dropdown menu to select category -->
     <select v-model="selectedCategory" class="form-select mb-3" style="font-size: 22px;">
       <option v-for="category in categories" :value="category" style="font-size: 20px;">{{ category }}</option>
     </select>
@@ -60,25 +64,27 @@ export default {
               <span v-if="item.type === 'Hotdog' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
               <span v-if="item.type === 'French Fries' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
               <span v-if="item.type === 'Meat' && item.description">Description: {{ item.description }}</span>
-              <span v-if="item.type === 'Sushi' && item.ingredients">Ingredients: {{ item.ingredients.join(', ') }}</span>
+              <span v-if="item.type === 'Sushi' && item.ingredients">Ingredients: {{ item.ingredients.join(', ')
+                }}</span>
               <span v-if="item.type === 'Fruit' && item.description">Description: {{ item.description }}</span>
               <span v-if="item.type === 'Drink' && item.description">Description: {{ item.description }}</span>
               <span v-if="item.type === 'Description' && item.description">Description: {{ item.description }}</span>
               <!-- Add more conditions for other types if needed -->
             </p>
-            <button class="btn btn-primary mt-auto" style="font-size: 1rem" @click="addToCart(item)">Add to Cart</button>
+            <button class="btn btn-primary mt-auto" style="font-size: 1rem" @click="addToCart(item)">Add to
+              Cart</button>
           </div>
         </div>
       </div>
     </div>
-    </div>
-  </template>
-  
-  
+  </div>
+</template>
+
+
 
 <style>
 .img-fluid {
-    max-width: 100%;
-    height: 300px;
+  max-width: 100%;
+  height: 300px;
 }
 </style>
