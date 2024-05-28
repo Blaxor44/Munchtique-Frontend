@@ -1,125 +1,76 @@
 <script>
 export default {
   name: "Navbar",
+  computed: {
+    shouldShowNavbar() {
+      const navbarRoutes = ['/', '/menu', '/cart'];
+      return navbarRoutes.includes(this.$route.path);
+    }
+  }
 };
 </script>
 
 <template>
-  <!-- Navbar -->
-  <nav
-    class="navbar navbar-expand-lg navbar-light bg-light fixed-top"
-    style="height: 70px"
-  >
-    <!-- Container wrapper -->
-    <div class="container">
-      <!-- New image holder -->
-      <a class="navbar-brand" href="#"
-        ><img
-          src="\src\components\icons\donut2.png"
-          alt="Logo"
-          class="h-12"
-          width="55"
-          height="55"
-        />Munchtique</a
-      >
 
-      <!-- Toggle button -->
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
+  <nav v-if="shouldShowNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 70px">
+
+    <div class="container">
+
+      <a class="navbar-brand" href="#"><img src="\src\components\icons\donut2.png" alt="Logo" class="h-12" width="55"
+          height="55" />Munchtique</a>
+
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Collapsible wrapper -->
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <!-- Search form (moved to the middle) -->
-        <form class="input-group mx-auto" style="width: 400px">
-          <input
-            type="search"
-            class="form-control"
-            placeholder="Munch..?"
-            aria-label="Search"
-          />
-          <button
-            class="btn btn-outline-primary"
-            type="button"
-            data-mdb-ripple-color="dark"
-            style="padding: 0.45rem 1.5rem 0.35rem"
-          >
-            Search
-          </button>
-        </form>
 
-        <!-- Right part (moved to the far right and larger font) -->
+      <form class="input-group mx-auto " style="width: 400px">
+        <input type="search" class="form-control" placeholder="Munch..?" aria-label="Search" />
+        <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark"
+          style="padding: 0.45rem 1.5rem 0.35rem">
+          Search
+        </button>
+      </form>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-size: 18px">
-          <!-- Add your right-side navigation items here -->
+
           <li class="nav-item">
-            <a
-              class="nav-link active d-flex flex-column text-center"
-              aria-current="page"
-              href="#"
-              ><i class="fas fa-home fa-lg"></i
-              ><span class="small">Home</span></a
-            >
+            <router-link class="nav-link active d-flex flex-column text-center" aria-current="page" to="/">
+              <i class="fas fa-home fa-lg"></i>
+              <span class="small">Home</span>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link d-flex flex-column text-center"
-              aria-current="page"
-              href="#"
-              ><i class="fas fa-user-friends fa-lg"></i
-              ><span class="small">My Network</span></a
-            >
+            <router-link class="nav-link d-flex flex-column text-center" aria-current="page" to="/menu">
+              <i class="fas fa-user-friends fa-lg"></i>
+              <span class="small">Menu</span>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link d-flex flex-column text-center"
-              aria-current="page"
-              href="#"
-              ><i class="fas fa-briefcase fa-lg"></i
-              ><span class="small">Poso</span></a
-            >
+            <router-link class="nav-link d-flex flex-column text-center" aria-current="page" to="/login">
+              <i class="fas fa-briefcase fa-lg"></i>
+              <span class="small">Login</span>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link d-flex flex-column text-center"
-              aria-current="page"
-              href="#"
-              ><i class="fas fa-comment-dots fa-lg"></i
-              ><span class="small">Messaging</span></a
-            >
+            <router-link class="nav-link d-flex flex-column text-center" aria-current="page" to="/signup">
+              <i class="fas fa-comment-dots fa-lg"></i>
+              <span class="small">Signup</span>
+            </router-link>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link d-flex flex-column text-center"
-              aria-current="page"
-              href="#"
-              ><i class="fas fa-bell fa-lg"></i
-              ><span class="small">Notifications</span></a
-            >
+            <router-link class="nav-link d-flex flex-column text-center" aria-current="page" to="/cart">
+              <i class="fas fa-bell fa-lg"></i>
+              <span class="small">Cart</span>
+            </router-link>
           </li>
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle d-flex align-items-center"
-              href="#"
-              id="navbarDropdownMenuLink"
-              role="button"
-              data-mdb-toggle="dropdown"
-              aria-expanded="false"
-            >
-              <img
-                src="\src\components\icons\profile.png"
-                class="rounded-circle"
-                height="30"
-                alt=""
-                loading="lazy"
-              />
+            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="/src/components/icons/profile.png" class="rounded-circle" height="30" alt="" loading="lazy" />
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li><a class="dropdown-item" href="#">My profile</a></li>
@@ -129,43 +80,21 @@ export default {
           </li>
         </ul>
       </div>
-      <!-- Collapsible wrapper -->
+
     </div>
-    <!-- Container wrapper -->
   </nav>
-  <!-- Navbar -->
 </template>
 
 <style>
-/* Color of the links BEFORE scroll */
-.navbar-scroll .nav-link,
-.navbar-scroll .navbar-toggler-icon,
-.navbar-scroll .navbar-brand {
-  color: #262626;
+.navbar-fixed-top {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #1a1a1a;
+  padding: 1rem 0;
+  z-index: 1000;
 }
 
-/* Color of the navbar BEFORE scroll */
-.navbar-scroll {
-  background-color: #ffc017;
-}
-
-/* Color of the links AFTER scroll */
-.navbar-scrolled .nav-link,
-.navbar-scrolled .navbar-toggler-icon,
-.navbar-scroll .navbar-brand {
-  color: #262626;
-}
-
-/* Color of the navbar AFTER scroll */
-.navbar-scrolled {
-  background-color: darkgrey;
-}
-
-/* An optional height of the navbar AFTER scroll */
-.navbar.navbar-scroll.navbar-scrolled {
-  padding-top: auto;
-  padding-bottom: auto;
-}
 .navbar-brand {
   font-size: unset;
   height: 3.5rem;

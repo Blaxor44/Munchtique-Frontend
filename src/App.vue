@@ -1,16 +1,33 @@
-<script></script>
+<script>
+import Navbar from '@/components/Navbar.vue';
+import SideContent from '@/components/SideContent.vue';
+import MunchButton from '@/components/MunchButton.vue';
+
+export default {
+  name: 'App',
+  components: {
+    Navbar, SideContent, MunchButton
+  },
+};
+</script>
 
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link>
-    <router-link to="/menu">Menu</router-link>
-    <router-link to="/login">Login</router-link>
-    <router-link to="/signup">Signup</router-link>
-    <router-link to="/cart">Cart</router-link>
+  <Navbar />
+  <div id="nav" class="nav-links">
   </div>
-  <div class="container">
+  <div class="container main-content">
     <router-view></router-view>
   </div>
 </template>
 
-<style scoped></style>
+<style>
+.nav-links {
+  display: none;
+  /* Assuming these links are part of the Navbar and not needed separately */
+}
+
+.main-content {
+  margin-top: 60px;
+  /* Adjust based on the height of your navbar */
+}
+</style>

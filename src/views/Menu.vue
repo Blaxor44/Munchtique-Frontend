@@ -87,4 +87,8 @@ export default {
   max-width: 100%;
   height: 300px;
 }
+
+.container {
+  padding: 20px;
+}
 </style>

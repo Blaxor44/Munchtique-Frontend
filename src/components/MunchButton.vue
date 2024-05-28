@@ -50,11 +50,7 @@ export default {
     <div class="toggle" ref="toggle" @click="toggleMenu">
       <img src="/src/components/icons/scooter.png" />
     </div>
-    <li
-      v-for="icon in getIcons()"
-      :key="icon.index"
-      :style="{ '--i': icon.index }"
-    >
+    <li v-for="icon in getIcons()" :key="icon.index" :style="{ '--i': icon.index }">
       <router-link :to="`/${icon.route}`">
         <img :src="icon.src" />
       </router-link>
@@ -62,28 +58,30 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(90deg, #ff1252, #0f0e0e);
 }
+
 .menu {
   position: relative;
-  right: 300px;
   width: 500px;
   height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .menu li {
   position: absolute;
   left: 0;
@@ -97,6 +95,7 @@ body {
 .menu.active li {
   transform: rotate(calc(360deg / 10 * var(--i)));
 }
+
 .menu li a {
   display: flex;
   justify-content: center;
@@ -104,6 +103,7 @@ body {
   transform: rotate(calc(360deg / -10 * var(--i)));
   transition: 0.5s;
 }
+
 .menu li a:hover {
   transform: scale(1.5);
 }

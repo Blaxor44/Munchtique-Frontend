@@ -7,7 +7,7 @@ export default {
     },
 
     methods: {
-        ...mapActions(['removeFromCart', 'clearNotification']),
+        ...mapActions(['removeFromCart']),
         handleRemoveFromCart(index) {
             this.removeFromCart(index);
         }
@@ -17,58 +17,93 @@ export default {
 
 <template>
     <div class="cart-container">
-        <h2 class="cart-title">Cart</h2>
+        <h2 class="cart-title">Your Cart</h2>
         <ul class="cart-list">
             <li v-for="(item, index) in cartItems" :key="index" class="cart-item">
-                <span>{{ item.name }} - ${{ item.price.toFixed(2) }}</span>
+                <div class="item-info">
+                    <img :src="item.image" alt="Item Image" class="item-image">
+                    <div class="item-details">
+                        <h3>{{ item.name }}</h3>
+                        <p class="price">Price: ${{ item.price.toFixed(2) }}</p>
+                    </div>
+                </div>
                 <button @click="handleRemoveFromCart(index)" class="remove-button">Remove</button>
             </li>
         </ul>
-        <h3 class="total-price">Total: ${{ totalPrice.toFixed(2) }}</h3>
+        <div class="total-container">
+            <h3 class="total-price">Total: ${{ totalPrice.toFixed(2) }}</h3>
+            <button class="checkout-button">Checkout</button>
+        </div>
     </div>
 </template>
 
-<style scoped>
+<style>
 .cart-container {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #f8f9fa;
+    padding: 60px;
+    background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cart-title {
-    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
     margin-bottom: 20px;
-    font-size: 1.8rem;
-    color: #343a40;
+    text-align: center;
+    color: #333;
 }
 
 .cart-list {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
 }
 
 .cart-item {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 10px 0;
-    border-bottom: 1px solid #dee2e6;
+    border-bottom: 1px solid #ddd;
 }
 
-.cart-item:last-child {
-    border-bottom: none;
+.item-info {
+    display: flex;
+    align-items: center;
+}
+
+.item-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 20px;
+    border-radius: 8px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h3 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.price {
+    font-size: 16px;
+    color: #777;
+    margin-top: 5px;
 }
 
 .remove-button {
-    padding: 5px 10px;
     background-color: #dc3545;
-    color: white;
+    color: #fff;
     border: none;
-    border-radius: 4px;
+    padding: 8px 16px;
     cursor: pointer;
+    border-radius: 4px;
     transition: background-color 0.3s;
 }
 
@@ -76,24 +111,30 @@ export default {
     background-color: #c82333;
 }
 
-.total-price {
-    text-align: center;
+.total-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
-    font-size: 1.5rem;
-    color: #343a40;
 }
 
-@media (max-width: 768px) {
-    .cart-container {
-        padding: 10px;
-    }
+.total-price {
+    font-size: 20px;
+    color: #333;
+}
 
-    .cart-title {
-        font-size: 1.5rem;
-    }
+.checkout-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
 
-    .total-price {
-        font-size: 1.2rem;
-    }
+.checkout-button:hover {
+    background-color: #0056b3;
 }
 </style>
