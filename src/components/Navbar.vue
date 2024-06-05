@@ -1,6 +1,13 @@
 <script>
+import { useStore } from 'vuex'; // Import useStore hook to access the Vuex store
 export default {
   name: "Navbar",
+  methods: {
+    handleLogout() {
+      // Dispatch the logout action
+      this.$store.dispatch('logout');
+    }
+  },
   computed: {
     shouldShowNavbar() {
       const navbarRoutes = ['/', '/menu', '/cart'];
@@ -73,10 +80,14 @@ export default {
               <img src="/src/components/icons/profile.png" class="rounded-circle" height="30" alt="" loading="lazy" />
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">My profile</a></li>
-              <li><a class="dropdown-item" href="#">Settings</a></li>
-              <li><a class="dropdown-item" href="#">Logout</a></li>
+              <li>
+                <router-link to="/profile" class="dropdown-item">My Profile</router-link>
+              </li>
+              <li>
+                <button @click="handleLogout" class="dropdown-item">Logout</button>
+              </li>
             </ul>
+
           </li>
         </ul>
       </div>

@@ -2,15 +2,34 @@
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
+    data() {
+        return {
+            discountCode: ''
+        };
+    },
+
     computed: {
         ...mapGetters(['cartItems', 'totalPrice'])
     },
 
     methods: {
-        ...mapActions(['removeFromCart']),
+        ...mapActions(['removeFromCart', 'applyDiscount']), // Added applyDiscount action
         handleRemoveFromCart(index) {
             this.removeFromCart(index);
+        },
+        // Call Vuex action to apply discount
+        applyDiscount() {
+            // Check if discount code is valid
+            if (this.discountCode === 'Munch') {
+                // Calculate discounted price (85% of the original price)
+                const discountedPrice = this.totalPrice * 0.85;
+                // Update the total price in the Vuex store
+                this.$store.commit('setTotalPrice', discountedPrice);
+            }
+            // Clear discount code field after applying discount
+            this.discountCode = '';
         }
+
     }
 };
 </script>
@@ -30,6 +49,13 @@ export default {
                 <button @click="handleRemoveFromCart(index)" class="remove-button">Remove</button>
             </li>
         </ul>
+        <!-- Discount code input field -->
+        <div class="discount-input ">
+            <label for="discount">Discount Code:</label>
+            <input type="text" id="discount" v-model="discountCode" class="discount-input-field">
+            <button class="btn btn-primary" @click="applyDiscount">Apply</button>
+        </div>
+
         <div class="total-container">
             <h3 class="total-price">Total: ${{ totalPrice.toFixed(2) }}</h3>
             <button class="checkout-button">Checkout</button>
@@ -135,6 +161,36 @@ export default {
 }
 
 .checkout-button:hover {
+    background-color: #0056b3;
+}
+
+/* Discount input field styles */
+.discount-input {
+    margin-top: 20px;
+}
+
+.discount-input label {
+    margin-right: 10px;
+}
+
+.discount-input-field {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+.discount-input button {
+    padding: 8px 16px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.discount-input button:hover {
     background-color: #0056b3;
 }
 </style>

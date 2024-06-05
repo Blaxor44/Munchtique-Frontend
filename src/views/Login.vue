@@ -2,12 +2,14 @@
 import axios from 'axios';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useStore } from 'vuex'; // Import useStore hook to access the Vuex store
 
 export default {
   setup() {
     const email = ref('');
     const password = ref('');
     const router = useRouter();
+    const store = useStore(); // Access the Vuex store
 
     const handleSubmit = async () => {
       try {
@@ -18,6 +20,9 @@ export default {
 
         // Store the token in localStorage
         localStorage.setItem('token', response.data.token);
+
+        // Dispatch the setUser action with the user data
+        store.dispatch('setUser', response.data.user);
 
         // Redirect to a protected route, e.g., dashboard
         router.push('/dashboard');
@@ -35,6 +40,7 @@ export default {
   },
 };
 </script>
+
 
 <template>
   <section class="vh-100 gradient-custom">
