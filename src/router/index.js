@@ -8,7 +8,7 @@ import MyProfile from "../views/MyProfile.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Home },
-  { path: "/menu", name: "Menu", component: Menu },
+  { path: '/menu/:category?', name: 'Menu', component: Menu},
   { path: "/login", name: "Login", component: Login },
   { path: "/signup", name: "Signup", component: Signup },
   { path: "/cart", name: "Cart", component: Cart },
@@ -16,7 +16,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
 });
 

@@ -6,61 +6,61 @@ export default {
   data() {
     return {
       items: [],
-      selectedCategory: 'All',
       categories: ['All', 'Burger', 'Pizza', 'Wrap', 'Hotdog', 'French Fries', 'Meat', 'Sushi', 'Fruit', 'Drink', 'Dessert']
     };
   },
   computed: {
+    selectedCategory() {
+      return this.$route.params.category || 'All';
+    },
     filteredItems() {
       if (this.selectedCategory === 'All') {
-        return this.items; // Return all items if 'all' is selected
+        return this.items;
       } else {
-        return this.items.filter(item => item.type === this.selectedCategory); // Filter items by selected category
+        return this.items.filter(item => item.type === this.selectedCategory);
       }
     }
   },
   mounted() {
-    this.fetchItems(); // Call the fetchItems function on mount
+    this.fetchItems();
   },
   methods: {
     ...mapActions(['addToCart']),
     fetchItems() {
       axios
-        .get("/src/data/food.json") // Adjust the path if necessary
+        .get("/src/data/food.json")
         .then(response => {
-          this.items = response.data; // Store all items in the items array
+          this.items = response.data;
         })
         .catch(error => {
           console.error('Error fetching data:', error);
         });
-    },
+    }
+  },
+  watch: {
+    // Watch for changes in the route and refetch items if necessary
+    '$route.params.category': 'fetchItems'
   }
 };
 </script>
 
-
-
 <template>
   <div class="container">
-    <!-- Centered category buttons -->
     <div class="category-buttons mb-3 d-flex justify-content-center">
-      <button v-for="category in categories" :key="category"
-        :class="['btn', 'category-btn', { active: selectedCategory === category }]"
-        @click="selectedCategory = category">
+      <router-link v-for="category in categories" :key="category" :to="`/menu/${category === 'All' ? '' : category}`"
+        class="btn category-btn">
         {{ category }}
-      </button>
+      </router-link>
     </div>
     <div class="row justify-content-center">
       <div v-for="(item, index) in filteredItems" :key="index" class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100 text-center">
-          <!-- Add image if available -->
           <img v-if="item.image" :src="item.image" class="card-img-top img-fluid" alt="Food Image">
           <div class="card-body d-flex flex-column align-items-center">
             <h5 class="card-title mb-3" style="font-size: 1.5rem">{{ item.name }}</h5>
             <p class="card-text" style="font-size: 1.1rem">
               Type: {{ item.type }}<br>
               Price: {{ item.price }}€<br>
-              <!-- Check if toppings/fillings/ingredients exist before displaying -->
               <span v-if="item.type === 'Pizza' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
               <span v-if="item.type === 'Burger' && item.topping">Topping: {{ item.topping }}</span>
               <span v-if="item.type === 'Wrap' && item.fillings">Fillings: {{ item.fillings.join(', ') }}</span>
@@ -71,8 +71,7 @@ export default {
                 }}</span>
               <span v-if="item.type === 'Fruit' && item.description">Description: {{ item.description }}</span>
               <span v-if="item.type === 'Drink' && item.description">Description: {{ item.description }}</span>
-              <span v-if="item.type === 'Description' && item.description">Description: {{ item.description }}</span>
-              <!-- Add more conditions for other types if needed -->
+              <span v-if="item.type === 'Dessert' && item.description">Description: {{ item.description }}</span>
             </p>
             <button class="btn btn-warning mt-auto" style="font-size: 1rem" @click="addToCart(item)">
               <i class="fas fa-shopping-cart"></i> Add to Cart
@@ -83,6 +82,8 @@ export default {
     </div>
   </div>
 </template>
+
+
 
 
 
@@ -134,9 +135,9 @@ export default {
 }
 
 .category-btn {
-  background-color: #f8f9fa;
+  background-color: #343a40;
   border: 1px solid #ddd;
-  color: #333;
+  color: #fff;
   font-size: 1rem;
   padding: 10px 15px;
   border-radius: 20px;

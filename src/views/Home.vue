@@ -1,6 +1,9 @@
 <script>
-import MunchButton from "@components/MunchButton"
+import MunchButton from '@/components/MunchButton.vue';
 export default {
+    components: {
+        MunchButton
+    },
 }
 </script>
 

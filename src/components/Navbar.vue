@@ -1,45 +1,85 @@
 <script>
 import { useStore } from 'vuex'; // Import useStore hook to access the Vuex store
+import items from '@/data/food.json';
+
 export default {
   name: "Navbar",
+  data() {
+    return {
+      searchQuery: '',
+      allItems: items, // Assign the imported JSON data to allItems
+      filteredItems: [], // Initialize filteredItems as empty array
+      showItems: false // Flag to control visibility of items
+    };
+  },
   methods: {
     handleLogout() {
       // Dispatch the logout action
       this.$store.dispatch('logout');
-    }
+    },
+    navigateToCategory(category) {
+      // Capitalize the first letter and convert the rest to lowercase
+      const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+
+      // Navigate to the corresponding category page using Vue Router
+      this.$router.push({ name: 'Menu', params: { category: formattedCategory } });
+    },
   },
   computed: {
     shouldShowNavbar() {
-      const navbarRoutes = ['/', '/menu', '/cart'];
-      return navbarRoutes.includes(this.$route.path);
+      const excludedRoutes = ['/login', '/signup'];
+      const currentPath = this.$route.path;
+      return !excludedRoutes.includes(currentPath);
+    }
+  },
+  watch: {
+    searchQuery() {
+      // Filter items based on the search query
+      this.filteredItems = this.allItems.filter(item =>
+        item.name.toLowerCase().startsWith(this.searchQuery.toLowerCase())
+      );
+
+      // Toggle the visibility of items based on the search query
+      this.showItems = this.searchQuery !== '';
     }
   }
 };
 </script>
 
 <template>
-
   <nav v-if="shouldShowNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 70px">
-
     <div class="container">
-
-      <a class="navbar-brand" href="#"><img src="\src\components\icons\donut2.png" alt="Logo" class="h-12" width="55"
-          height="55" />Munchtique</a>
-
-
+      <router-link to="/">
+        <img src="\src\components\icons\donut2.png" alt="Logo" class="h-12" width="55" height="55" />
+      </router-link>
+      <span> Munchtique</span>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
-
-      <form class="input-group mx-auto " style="width: 400px">
-        <input type="search" class="form-control" placeholder="Munch..?" aria-label="Search" />
-        <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark"
-          style="padding: 0.45rem 1.5rem 0.35rem">
-          Search
-        </button>
-      </form>
+      <div class="container">
+        <!-- Search form -->
+        <form class="input-group mx-auto mb-3" style="width: 400px">
+          <input type="search" class="form-control" placeholder="Munch..?" aria-label="Search" v-model="searchQuery" />
+          <button class="btn btn-outline-primary" type="button" data-mdb-ripple-color="dark"
+            style="padding: 0.45rem 1.5rem 0.35rem">
+            Search
+          </button>
+        </form>
+        <!-- List of items -->
+        <ul class="list-group mx-auto" v-if="searchQuery !== ''">
+          <li v-for="(item, index) in filteredItems" :key="index" class="list-group-item list-group-item-action"
+            @click="navigateToCategory(item.type)">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <img v-if="item.image" :src="item.image" alt="Food Image" class="img-fluid" style="max-height: 50px;" />
+                <span class="ms-2">{{ item.name }}</span>
+              </div>
+              <span>{{ item.price }}€</span>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0" style="font-size: 18px">
@@ -109,5 +149,19 @@ export default {
 .navbar-brand {
   font-size: unset;
   height: 3.5rem;
+}
+
+/* Style for the list items */
+.list-group-item {
+  cursor: pointer;
+  border: none;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+}
+
+.list-group-item img {
+  border-radius: 50%;
 }
 </style>

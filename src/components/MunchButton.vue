@@ -8,40 +8,24 @@ export default {
     },
     getIcons() {
       return [
-        { index: 0, src: "/src/components/icons/pizza.png", route: "pizza" },
-        {
-          index: 1,
-          src: "/src/components/icons/hamburger.png",
-          route: "hamburger",
-        },
-        {
-          index: 2,
-          src: "/src/components/icons/tortilla.png",
-          route: "tortilla",
-        },
-        { index: 3, src: "/src/components/icons/hotdog.png", route: "hotdog" },
-        {
-          index: 4,
-          src: "/src/components/icons/frenchfries.png",
-          route: "frenchfries",
-        },
-        { index: 5, src: "/src/components/icons/steak.png", route: "steak" },
-        { index: 6, src: "/src/components/icons/sushi.png", route: "sushi" },
-        { index: 7, src: "/src/components/icons/fruit.png", route: "fruit" },
-        {
-          index: 8,
-          src: "/src/components/icons/dessert.png",
-          route: "dessert",
-        },
-        { index: 9, src: "/src/components/icons/cola.png", route: "cola" },
+        { index: 0, src: "/src/components/icons/pizza.png", route: "Pizza" },
+        { index: 1, src: "/src/components/icons/hamburger.png", route: "Burger" },
+        { index: 2, src: "/src/components/icons/tortilla.png", route: "Wrap" },
+        { index: 3, src: "/src/components/icons/hotdog.png", route: "Hotdog" },
+        { index: 4, src: "/src/components/icons/frenchfries.png", route: "French Fries" },
+        { index: 5, src: "/src/components/icons/steak.png", route: "Meat" },
+        { index: 6, src: "/src/components/icons/sushi.png", route: "Sushi" },
+        { index: 7, src: "/src/components/icons/fruit.png", route: "Fruit" },
+        { index: 8, src: "/src/components/icons/dessert.png", route: "Dessert" },
+        { index: 9, src: "/src/components/icons/cola.png", route: "Drink" }
       ];
-    },
+    }
   },
 
   name: "MunchButton",
   components: {
-    RouterLink,
-  },
+    RouterLink
+  }
 };
 </script>
 
@@ -51,7 +35,7 @@ export default {
       <img src="/src/components/icons/scooter.png" />
     </div>
     <li v-for="icon in getIcons()" :key="icon.index" :style="{ '--i': icon.index }">
-      <router-link :to="`/${icon.route}`">
+      <router-link :to="`/menu/${icon.route}`">
         <img :src="icon.src" />
       </router-link>
     </li>
