@@ -29,18 +29,23 @@ export default {
 };
 </script>
 
+
 <template>
-  <div class="menu" ref="menu">
-    <div class="toggle" ref="toggle" @click="toggleMenu">
-      <img src="/src/components/icons/scooter.png" />
+  <div class="wrapper">
+    <div class="menu" ref="menu">
+      <div class="toggle" ref="toggle" @click="toggleMenu">
+        <img src="/src/components/icons/scooter.png" />
+      </div>
+      <li v-for="icon in getIcons()" :key="icon.index" :style="{ '--i': icon.index }">
+        <router-link :to="`/menu/${icon.route}`">
+          <img :src="icon.src" />
+        </router-link>
+      </li>
     </div>
-    <li v-for="icon in getIcons()" :key="icon.index" :style="{ '--i': icon.index }">
-      <router-link :to="`/menu/${icon.route}`">
-        <img :src="icon.src" />
-      </router-link>
-    </li>
   </div>
 </template>
+
+
 
 <style scoped>
 * {
@@ -49,12 +54,11 @@ export default {
   box-sizing: border-box;
 }
 
-body {
+.wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(90deg, #ff1252, #0f0e0e);
 }
 
 .menu {

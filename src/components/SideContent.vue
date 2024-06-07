@@ -1,12 +1,12 @@
 <template>
   <div class="side-content">
-    <img src="\src\components\icons\fast-food.png" height="500" width="600" class="side-image" />
     <div class="text-content">
       <p class="text">
         From Order to <br />
         Doorstep in Minutes
       </p>
     </div>
+    <img src="\src\components\icons\fast-food.png" height="500" width="600" class="side-image" />
   </div>
 </template>
 
@@ -18,13 +18,12 @@ export default {
 
 <style>
 .side-content {
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  /* Adjust the margin-left and margin-top as needed */
+  margin-left: 0px;
+  /* Adjust left position */
+  margin-top: 10px;
+  /* Adjust top position */
   padding: 20px;
 }
 
@@ -34,6 +33,7 @@ export default {
 
 .text-content {
   max-width: 600px;
+  text-align: center;
 }
 
 .text {
@@ -41,7 +41,7 @@ export default {
   /* Adjust the font size as needed */
   font-family: cursive;
   /* Change the font family as needed */
-  color: #333;
+  color: whitesmoke;
   /* Change the text color as needed */
 }
 </style>

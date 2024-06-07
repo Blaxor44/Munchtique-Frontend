@@ -6,21 +6,31 @@ import MunchButton from '@/components/MunchButton.vue';
 export default {
   name: 'App',
   components: {
-    Navbar, SideContent, MunchButton
+    Navbar,
+    SideContent,
+    MunchButton
   },
 };
 </script>
 
+
 <template>
-  <Navbar />
-  <div id="nav" class="nav-links">
-  </div>
-  <div class="container main-content">
-    <router-view></router-view>
+  <div class="app-background">
+    <Navbar />
+    <div id="nav" class="nav-links"></div>
+    <div class="container main-content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
+
 <style>
+.app-background {
+  min-height: 100vh;
+  background: linear-gradient(90deg, #ff1252, #0f0e0e);
+}
+
 .nav-links {
   display: none;
   /* Assuming these links are part of the Navbar and not needed separately */

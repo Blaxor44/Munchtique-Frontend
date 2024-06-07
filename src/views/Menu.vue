@@ -6,7 +6,8 @@ export default {
   data() {
     return {
       items: [],
-      categories: ['All', 'Burger', 'Pizza', 'Wrap', 'Hotdog', 'French Fries', 'Meat', 'Sushi', 'Fruit', 'Drink', 'Dessert']
+      categories: ['All', 'Burger', 'Pizza', 'Wrap', 'Hotdog', 'French Fries', 'Meat', 'Sushi', 'Fruit', 'Drink', 'Dessert'],
+      isTransitioning: false
     };
   },
   computed: {
@@ -35,14 +36,24 @@ export default {
         .catch(error => {
           console.error('Error fetching data:', error);
         });
+    },
+    addToCart(item) {
+      this.$store.dispatch('addToCart', item);
+      alert(`Added ${item.name} to cart!`);
+    },
+    handleCategoryChange() {
+      this.isTransitioning = true;
+      setTimeout(() => {
+        this.isTransitioning = false;
+      }, 500); // Duration should match the transition duration in CSS
     }
   },
   watch: {
-    // Watch for changes in the route and refetch items if necessary
-    '$route.params.category': 'fetchItems'
+    '$route.params.category': 'handleCategoryChange'
   }
 };
 </script>
+
 
 <template>
   <div class="container">
@@ -52,7 +63,7 @@ export default {
         {{ category }}
       </router-link>
     </div>
-    <div class="row justify-content-center">
+    <div :class="['row', 'justify-content-center', { 'transitioning': isTransitioning }]">
       <div v-for="(item, index) in filteredItems" :key="index" class="col-lg-4 col-md-6 mb-4">
         <div class="card h-100 text-center">
           <img v-if="item.image" :src="item.image" class="card-img-top img-fluid" alt="Food Image">
@@ -82,10 +93,6 @@ export default {
     </div>
   </div>
 </template>
-
-
-
-
 
 
 
@@ -157,5 +164,16 @@ export default {
 .btn-warning .fas {
   margin-right: 5px;
   /* Add some space between the icon and the text */
+}
+
+/* Transition effect for items */
+.transitioning {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.row {
+  transition: opacity 0.5s, transform 0.5s;
 }
 </style>
