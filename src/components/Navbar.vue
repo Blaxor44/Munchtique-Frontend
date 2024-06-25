@@ -1,47 +1,60 @@
 <script>
+import { ref, computed, watch } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter, useRoute } from 'vue-router';
 import items from '@/data/food.json';
 
 export default {
   name: "Navbar",
-  data() {
-    return {
-      searchQuery: '',
-      allItems: items,
-      filteredItems: [],
-      showItems: false
-    };
-  },
-  methods: {
-    handleLogout() {
-      this.$store.dispatch('logout');
-    },
-    navigateToCategory(category) {
-      const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
-      this.$router.push({ name: 'Menu', params: { category: formattedCategory } });
-      this.searchQuery = '';
-    }
-  },
-  computed: {
-    shouldShowNavbar() {
+  setup() {
+    const searchQuery = ref('');
+    const allItems = ref(items);
+    const filteredItems = ref([]);
+    const showItems = ref(false);
+    const store = useStore();
+    const router = useRouter();
+    const route = useRoute();
+
+    const username = computed(() => store.state.user ? store.state.user.username : null);
+
+    const shouldShowNavbar = computed(() => {
       const excludedRoutes = [];
-      const currentPath = this.$route.path;
+      const currentPath = route.path;
       return !excludedRoutes.includes(currentPath);
-    }
-  },
-  watch: {
-    searchQuery() {
-      const query = this.searchQuery.toLowerCase();
-      this.filteredItems = this.allItems.filter(item =>
+    });
+
+    const handleLogout = () => {
+      store.dispatch('logout');
+      router.push('/login');
+    };
+
+    const navigateToCategory = (category) => {
+      const formattedCategory = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+      router.push({ name: 'Menu', params: { category: formattedCategory } });
+      searchQuery.value = '';
+    };
+
+    watch(searchQuery, (newQuery) => {
+      const query = newQuery.toLowerCase();
+      filteredItems.value = allItems.value.filter(item =>
         item.name.toLowerCase().includes(query) || item.type.toLowerCase().includes(query)
       );
-      this.showItems = this.searchQuery !== '';
-    }
+      showItems.value = newQuery !== '';
+    });
+
+    return {
+      searchQuery,
+      allItems,
+      filteredItems,
+      showItems,
+      username,
+      shouldShowNavbar,
+      handleLogout,
+      navigateToCategory,
+    };
   }
 };
 </script>
-
-
 
 <template>
   <nav v-if="shouldShowNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 70px">
@@ -107,6 +120,7 @@ export default {
             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
               role="button" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="/src/components/icons/profile.png" class="rounded-circle" height="30" alt="" loading="lazy" />
+              <span class="ms-2">{{ username }}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
               <li>
@@ -122,6 +136,7 @@ export default {
     </div>
   </nav>
 </template>
+
 
 
 

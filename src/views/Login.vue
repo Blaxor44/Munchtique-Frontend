@@ -13,7 +13,7 @@ export default {
 
     const handleSubmit = async () => {
       try {
-        const response = await axios.post('http://localhost:5173/api/users/login', {
+        const response = await axios.post('http://localhost:5000/api/users/login', {
           email: email.value,
           password: password.value,
         });
@@ -25,7 +25,7 @@ export default {
         store.dispatch('setUser', response.data.user);
 
         // Redirect to a protected route, e.g., dashboard
-        router.push('/dashboard');
+        router.push('/');
       } catch (error) {
         console.error('Error logging in:', error);
         alert('Invalid credentials');
@@ -41,7 +41,6 @@ export default {
 };
 </script>
 
-
 <template>
   <section class="vh-100 gradient-custom">
     <div class="container py-5 h-100">
@@ -49,7 +48,7 @@ export default {
         <div class="col-12 col-md-8 col-lg-6 col-xl-5">
           <div class="card bg-dark text-white" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
-              <p class="navbar-brand" href="#">
+              <p class="navbar-brand">
                 <img src="/src/components/icons/donut2.png" alt="Logo" class="h-12" width="75" height="75" />
               </p>
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
@@ -96,4 +95,8 @@ export default {
   </section>
 </template>
 
-<style></style>
+
+
+<style>
+/* Add any necessary styling here */
+</style>
