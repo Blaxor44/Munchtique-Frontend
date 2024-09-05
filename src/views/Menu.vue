@@ -1,13 +1,14 @@
 <script>
-import axios from 'axios';
 import { mapActions } from 'vuex';
+import itemsData from '@/data/food.json'; // Import the JSON file directly
 
 export default {
   data() {
     return {
-      items: [],
+      items: [], // Initialize as an empty array
       categories: ['All', 'Burger', 'Pizza', 'Wrap', 'Hotdog', 'French Fries', 'Meat', 'Sushi', 'Fruit', 'Drink', 'Dessert'],
-      isTransitioning: false
+      isTransitioning: false,
+      loading: true, // Add loading state
     };
   },
   computed: {
@@ -15,6 +16,9 @@ export default {
       return this.$route.params.category || 'All';
     },
     filteredItems() {
+      if (!Array.isArray(this.items)) {
+        return [];
+      }
       if (this.selectedCategory === 'All') {
         return this.items;
       } else {
@@ -28,14 +32,13 @@ export default {
   methods: {
     ...mapActions(['addToCart']),
     fetchItems() {
-      axios
-        .get("/src/data/food.json")
-        .then(response => {
-          this.items = response.data;
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-        });
+      try {
+        this.items = itemsData; // Directly use the imported JSON data
+        this.loading = false; // Stop loading once data is set
+      } catch (error) {
+        console.error('Error fetching items:', error);
+        this.loading = false; // Stop loading if there's an error
+      }
     },
     addToCart(item) {
       this.$store.dispatch('addToCart', item);
@@ -54,47 +57,53 @@ export default {
 };
 </script>
 
-
 <template>
   <div class="container">
-    <div class="category-buttons mb-3 d-flex justify-content-center">
-      <router-link v-for="category in categories" :key="category" :to="`/menu/${category === 'All' ? '' : category}`"
-        class="btn category-btn">
-        {{ category }}
-      </router-link>
+    <div v-if="loading" class="text-center mt-5">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
     </div>
-    <div :class="['row', 'justify-content-center', { 'transitioning': isTransitioning }]">
-      <div v-for="(item, index) in filteredItems" :key="index" class="col-lg-4 col-md-6 mb-4">
-        <div class="card h-100 text-center">
-          <img v-if="item.image" :src="item.image" class="card-img-top img-fluid" alt="Food Image">
-          <div class="card-body d-flex flex-column align-items-center">
-            <h5 class="card-title mb-3" style="font-size: 1.5rem">{{ item.name }}</h5>
-            <p class="card-text" style="font-size: 1.1rem">
-              Type: {{ item.type }}<br>
-              Price: {{ item.price }}€<br>
-              <span v-if="item.type === 'Pizza' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
-              <span v-if="item.type === 'Burger' && item.topping">Topping: {{ item.topping }}</span>
-              <span v-if="item.type === 'Wrap' && item.fillings">Fillings: {{ item.fillings.join(', ') }}</span>
-              <span v-if="item.type === 'Hotdog' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
-              <span v-if="item.type === 'French Fries' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
-              <span v-if="item.type === 'Meat' && item.description">Description: {{ item.description }}</span>
-              <span v-if="item.type === 'Sushi' && item.ingredients">Ingredients: {{ item.ingredients.join(', ')
-                }}</span>
-              <span v-if="item.type === 'Fruit' && item.description">Description: {{ item.description }}</span>
-              <span v-if="item.type === 'Drink' && item.description">Description: {{ item.description }}</span>
-              <span v-if="item.type === 'Dessert' && item.description">Description: {{ item.description }}</span>
-            </p>
-            <button class="btn btn-warning mt-auto" style="font-size: 1rem" @click="addToCart(item)">
-              <i class="fas fa-shopping-cart"></i> Add to Cart
-            </button>
+
+    <div v-else>
+      <div class="category-buttons mb-3 d-flex justify-content-center">
+        <router-link v-for="category in categories" :key="category" :to="`/menu/${category === 'All' ? '' : category}`"
+          class="btn category-btn">
+          {{ category }}
+        </router-link>
+      </div>
+      <div :class="['row', 'justify-content-center', { 'transitioning': isTransitioning }]">
+        <div v-for="(item, index) in filteredItems" :key="index" class="col-lg-4 col-md-6 mb-4">
+          <div class="card h-100 text-center">
+            <img v-if="item.image" :src="item.image" class="card-img-top img-fluid" alt="Food Image">
+            <div class="card-body d-flex flex-column align-items-center">
+              <h5 class="card-title mb-3" style="font-size: 1.5rem">{{ item.name }}</h5>
+              <p class="card-text" style="font-size: 1.1rem">
+                Type: {{ item.type }}<br>
+                Price: {{ item.price }}€<br>
+                <span v-if="item.type === 'Pizza' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
+                <span v-if="item.type === 'Burger' && item.topping">Topping: {{ item.topping }}</span>
+                <span v-if="item.type === 'Wrap' && item.fillings">Fillings: {{ item.fillings.join(', ') }}</span>
+                <span v-if="item.type === 'Hotdog' && item.toppings">Toppings: {{ item.toppings.join(', ') }}</span>
+                <span v-if="item.type === 'French Fries' && item.toppings">Toppings: {{ item.toppings.join(', ')
+                  }}</span>
+                <span v-if="item.type === 'Meat' && item.description">Description: {{ item.description }}</span>
+                <span v-if="item.type === 'Sushi' && item.ingredients">Ingredients: {{ item.ingredients.join(', ')
+                  }}</span>
+                <span v-if="item.type === 'Fruit' && item.description">Description: {{ item.description }}</span>
+                <span v-if="item.type === 'Drink' && item.description">Description: {{ item.description }}</span>
+                <span v-if="item.type === 'Dessert' && item.description">Description: {{ item.description }}</span>
+              </p>
+              <button class="btn btn-warning mt-auto" style="font-size: 1rem" @click="addToCart(item)">
+                <i class="fas fa-shopping-cart"></i> Add to Cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-
 
 <style>
 .img-fluid {

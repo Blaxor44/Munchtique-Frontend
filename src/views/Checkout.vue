@@ -12,42 +12,50 @@
                             <h2 class="fw-bold mb-2 text-uppercase">Checkout</h2>
                             <p class="text-white-50 mb-5">Please enter your delivery and payment details</p>
 
+                            <!-- Full Name Input -->
                             <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" v-model="name" class="form-control form-control-lg" />
+                                <input type="text" v-model="fullName" class="form-control form-control-lg" />
                                 <label class="form-label">Full Name</label>
                             </div>
 
+                            <!-- Email Input -->
+                            <div data-mdb-input-init class="form-outline form-white mb-4">
+                                <input type="email" v-model="email" class="form-control form-control-lg" />
+                                <label class="form-label">Email</label>
+                            </div>
+
+                            <!-- Phone Input -->
+                            <div data-mdb-input-init class="form-outline form-white mb-4">
+                                <input type="text" v-model="phone" class="form-control form-control-lg" />
+                                <label class="form-label">Phone</label>
+                            </div>
+
+                            <!-- Address Input -->
                             <div data-mdb-input-init class="form-outline form-white mb-4">
                                 <input type="text" v-model="address" class="form-control form-control-lg" />
                                 <label class="form-label">Address</label>
                             </div>
 
+                            <!-- City Input -->
                             <div data-mdb-input-init class="form-outline form-white mb-4">
                                 <input type="text" v-model="city" class="form-control form-control-lg" />
                                 <label class="form-label">City</label>
                             </div>
 
+                            <!-- Postal Code Input -->
                             <div data-mdb-input-init class="form-outline form-white mb-4">
                                 <input type="text" v-model="postalCode" class="form-control form-control-lg" />
                                 <label class="form-label">Postal Code</label>
                             </div>
 
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" v-model="phone" class="form-control form-control-lg" />
-                                <label class="form-label">Phone Number</label>
-                            </div>
-
-                            <div data-mdb-input-init class="form-outline form-white mb-4">
-                                <input type="text" v-model="email" class="form-control form-control-lg" />
-                                <label class="form-label">Email</label>
-                            </div>
-
+                            <!-- Pay with Card -->
                             <div class="form-check form-switch mb-4">
                                 <input class="form-check-input" type="checkbox" v-model="payWithCard"
                                     @change="clearCardDetails" />
                                 <label class="form-check-label">Pay with Card</label>
                             </div>
 
+                            <!-- Card Details -->
                             <div v-if="payWithCard">
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
                                     <input type="text" v-model="cardNumber" @input="formatCardNumber"
@@ -69,7 +77,9 @@
                             </div>
 
                             <button @click="handleSubmit" data-mdb-button-init data-mdb-ripple-init
-                                class="btn btn-outline-light btn-lg px-5" type="submit">Submit</button>
+                                class="btn btn-outline-light btn-lg px-5" type="submit">
+                                Submit
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -88,21 +98,24 @@ export default {
     name: 'Checkout',
     setup() {
         const store = useStore();
-        const name = ref('');
+        const router = useRouter();
+
+        // Define reactive variables for form inputs
+        const fullName = ref(store.state.user ? store.state.user.fullName : '');
+        const email = ref(store.state.user ? store.state.user.email : '');
+        const phone = ref(store.state.user ? store.state.user.phone : '');
         const address = ref('');
         const city = ref('');
         const postalCode = ref('');
-        const phone = ref('');
-        const email = ref('');
         const payWithCard = ref(false);
         const cardNumber = ref('');
         const expiryDate = ref('');
         const cvv = ref('');
-        const router = useRouter();
 
         const cartItems = computed(() => store.getters.cartItems);
         const totalPrice = computed(() => store.getters.totalPrice);
 
+        // Function to clear card details when not paying with card
         const clearCardDetails = () => {
             if (!payWithCard.value) {
                 cardNumber.value = '';
@@ -111,6 +124,7 @@ export default {
             }
         };
 
+        // Functions to format card number, expiry date, and CVV input fields
         const formatCardNumber = (event) => {
             let value = event.target.value.replace(/\D/g, '');
             if (value.length > 16) {
@@ -137,30 +151,42 @@ export default {
             cvv.value = value;
         };
 
+        // Function to handle form submission
         const handleSubmit = async () => {
-            // Validate form data
-            if (payWithCard.value && (!cardNumber.value || !expiryDate.value || !cvv.value)) {
-                alert('Please fill out all card details.');
-                return;
-            }
+            const payload = {
+                fullName: fullName.value,
+                email: email.value,
+                phone: phone.value,
+                address: address.value,
+                city: city.value,
+                postalCode: postalCode.value,
+                paymentMethod: payWithCard.value ? 'card' : 'cash',
+                cardDetails: payWithCard.value ? { cardNumber: cardNumber.value, expiryDate: expiryDate.value, cvv: cvv.value } : null,
+                items: cartItems.value.map(item => ({
+                    name: item.name,
+                    price: item.price,
+                })),
+                totalPrice: totalPrice.value,
+            };
+
+            console.log('Payload:', payload); // Debugging: log the payload to ensure all fields are populated correctly
 
             try {
-                const response = await axios.post('http://localhost:5000/api/checkout', {
-                    name: name.value,
-                    address: address.value,
-                    city: city.value,
-                    postalCode: postalCode.value,
-                    phone: phone.value,
-                    email: email.value,
-                    paymentMethod: payWithCard.value ? 'card' : 'cash',
-                    cardDetails: payWithCard.value ? { cardNumber: cardNumber.value, expiryDate: expiryDate.value, cvv: cvv.value } : null,
-                    items: cartItems.value, // Include cart items
-                    totalPrice: totalPrice.value // Include total price
+                const token = localStorage.getItem('token');
+                if (!token) {
+                    console.error('No token found');
+                    return; // Stop execution if the token is missing
+                }
+                const response = await axios.post('http://localhost:5000/api/checkout', payload, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
                 });
 
                 if (response.status === 200) {
+                    await store.dispatch('clearCart');
                     alert('Order placed successfully!');
-                    router.push('/thank-you');
                 } else {
                     alert('Error placing order. Please try again.');
                 }
@@ -171,12 +197,12 @@ export default {
         };
 
         return {
-            name,
+            fullName,
+            email,
+            phone,
             address,
             city,
             postalCode,
-            phone,
-            email,
             payWithCard,
             cardNumber,
             expiryDate,

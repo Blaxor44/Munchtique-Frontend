@@ -14,4 +14,3 @@ createApp(App)
   .mount('#app');
 
 store.dispatch('loadStoredState'); // Load stored state from localStorage
-axios.defaults.baseURL = 'http://localhost:5000';

@@ -1,39 +1,3 @@
-<script>
-import { mapGetters, mapActions } from 'vuex';
-
-export default {
-    data() {
-        return {
-            discountCode: ''
-        };
-    },
-
-    computed: {
-        ...mapGetters(['cartItems', 'totalPrice'])
-    },
-
-    methods: {
-        ...mapActions(['removeFromCart', 'applyDiscount']), // Added applyDiscount action
-        handleRemoveFromCart(index) {
-            this.removeFromCart(index);
-        },
-        // Call Vuex action to apply discount
-        applyDiscount() {
-            // Check if discount code is valid
-            if (this.discountCode === 'Munch') {
-                // Calculate discounted price (85% of the original price)
-                const discountedPrice = this.totalPrice * 0.85;
-                // Update the total price in the Vuex store
-                this.$store.commit('setTotalPrice', discountedPrice);
-            }
-            // Clear discount code field after applying discount
-            this.discountCode = '';
-        }
-
-    }
-};
-</script>
-
 <template>
     <div class="cart-container">
         <h2 class="cart-title">Your Cart</h2>
@@ -50,10 +14,10 @@ export default {
             </li>
         </ul>
         <!-- Discount code input field -->
-        <div class="discount-input ">
+        <div class="discount-input">
             <label for="discount">Discount Code:</label>
             <input type="text" id="discount" v-model="discountCode" class="discount-input-field">
-            <button class="btn btn-primary" @click="applyDiscount">Apply</button>
+            <button class="btn btn-primary" @click="applyDiscountCode">Apply</button>
         </div>
 
         <div class="total-container">
@@ -62,6 +26,39 @@ export default {
         </div>
     </div>
 </template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex';
+
+export default {
+    data() {
+        return {
+            discountCode: ''
+        };
+    },
+
+    computed: {
+        ...mapGetters(['cartItems', 'totalPrice'])
+    },
+
+    methods: {
+        ...mapActions(['removeFromCart', 'applyDiscount']),
+        handleRemoveFromCart(index) {
+            this.removeFromCart(index);
+        },
+        async applyDiscountCode() {
+            const isApplied = await this.applyDiscount(this.discountCode);
+
+            if (isApplied) {
+                alert('Code successfully applied.');
+            } else {
+                alert('Invalid code or code already applied.');
+            }
+            this.discountCode = ''; // Clear discount code field after applying
+        }
+    }
+};
+</script>
 
 <style>
 .cart-container {

@@ -37,7 +37,7 @@
                 <h3>Basic Info</h3>
                 <p><strong>Full Name:</strong> {{ user?.fullName }}</p> <!-- Optional chaining here -->
                 <p><strong>Username:</strong> {{ user?.username }}</p> <!-- Optional chaining here -->
-                <p><strong>Email Addr.:</strong> {{ user?.email }}</p> <!-- Optional chaining here -->
+                <p><strong>Email:</strong> {{ user?.email }}</p> <!-- Optional chaining here -->
                 <p><strong>Phone:</strong> {{ user?.phone }}</p> <!-- Optional chaining here -->
             </div>
             <div v-if="activeTab === 'history'">
@@ -78,7 +78,7 @@ export default {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        // 'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add if needed
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Include token
                     },
                 });
 
@@ -97,7 +97,6 @@ export default {
                 // Handle error appropriately, e.g., show a user-friendly message
             }
         },
-
         async fetchPurchaseHistory() {
             try {
                 const response = await fetch('http://localhost:5000/api/purchase-history', {
@@ -134,6 +133,7 @@ export default {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add token
                     },
                     body: JSON.stringify(updatedUser),
                 });
@@ -143,7 +143,11 @@ export default {
                 }
 
                 const data = await response.json();
+
+                // Update both the user and editUser data with the latest user info
                 this.user = data.user; // Update user data with the updated user object
+                this.editUser = { ...this.user }; // Sync editUser with the updated user
+
                 this.isEditing = false; // Exit edit mode
 
             } catch (error) {
@@ -151,6 +155,8 @@ export default {
                 // Handle error appropriately, e.g., show a user-friendly message
             }
         }
+
+
     },
 
     mounted() {
