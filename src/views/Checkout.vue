@@ -187,6 +187,7 @@ export default {
                 if (response.status === 200) {
                     await store.dispatch('clearCart');
                     alert('Order placed successfully!');
+                    router.push('/thankyou');
                 } else {
                     alert('Error placing order. Please try again.');
                 }

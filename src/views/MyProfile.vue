@@ -1,16 +1,19 @@
 <template>
     <div class="user-info-container">
+        <!-- User Details Section -->
         <div class="user-header">
             <div class="user-details">
-                <h2>{{ user?.fullName }}</h2> <!-- Optional chaining here -->
-                <p>{{ user?.username }}</p> <!-- Optional chaining here -->
-                <p>{{ user?.email }}</p> <!-- Optional chaining here -->
-                <p>{{ user?.phone }}</p> <!-- Optional chaining here -->
+                <h2>{{ user?.fullName }}</h2> <!-- Optional chaining -->
+                <p>{{ user?.username }}</p>
+                <p>{{ user?.email }}</p>
+                <p>{{ user?.phone }}</p>
                 <button @click="isEditing = !isEditing" class="edit-button">
                     {{ isEditing ? 'Cancel' : 'Edit Details' }}
                 </button>
             </div>
         </div>
+
+        <!-- Edit Form -->
         <div v-if="isEditing" class="edit-form">
             <form @submit.prevent="updateUser">
                 <label for="name">Full Name:</label>
@@ -24,6 +27,8 @@
                 <button type="submit" class="save-button">Save</button>
             </form>
         </div>
+
+        <!-- User Tabs -->
         <div class="user-tabs">
             <button :class="{ active: activeTab === 'basic' }" @click="activeTab = 'basic'; fetchUser()">
                 Basic Info
@@ -32,21 +37,23 @@
                 Purchase History
             </button>
         </div>
+
+        <!-- User Content -->
         <div class="user-content">
             <div v-if="activeTab === 'basic'">
                 <h3>Basic Info</h3>
-                <p><strong>Full Name:</strong> {{ user?.fullName }}</p> <!-- Optional chaining here -->
-                <p><strong>Username:</strong> {{ user?.username }}</p> <!-- Optional chaining here -->
-                <p><strong>Email:</strong> {{ user?.email }}</p> <!-- Optional chaining here -->
-                <p><strong>Phone:</strong> {{ user?.phone }}</p> <!-- Optional chaining here -->
+                <p><strong>Full Name:</strong> {{ user?.fullName }}</p>
+                <p><strong>Username:</strong> {{ user?.username }}</p>
+                <p><strong>Email:</strong> {{ user?.email }}</p>
+                <p><strong>Phone:</strong> {{ user?.phone }}</p>
             </div>
             <div v-if="activeTab === 'history'">
                 <h3>Purchase History</h3>
                 <ul v-if="purchaseHistory.length > 0">
                     <li v-for="(item, index) in purchaseHistory" :key="index">
-                        <p><strong>Order ID:</strong> {{ item?._id }}</p> <!-- Optional chaining here -->
-                        <p><strong>Date:</strong> {{ item?.timestamp }}</p> <!-- Optional chaining here -->
-                        <p><strong>Total:</strong> ${{ item?.totalPrice }}</p> <!-- Optional chaining here -->
+                        <p><strong>Order ID:</strong> {{ item?._id }}</p>
+                        <p><strong>Date:</strong> {{ item?.timestamp }}</p>
+                        <p><strong>Total:</strong> ${{ item?.totalPrice }}</p>
                     </li>
                 </ul>
                 <p v-else>No purchase history available.</p>
@@ -103,7 +110,7 @@ export default {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
-                        // 'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add if needed
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Include token if needed
                     },
                 });
 
@@ -130,10 +137,10 @@ export default {
 
             try {
                 const response = await fetch('http://localhost:5000/api/user', {
-                    method: 'POST',
+                    method: 'PUT', // Change POST to PUT
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Add token
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Include token
                     },
                     body: JSON.stringify(updatedUser),
                 });
@@ -155,8 +162,6 @@ export default {
                 // Handle error appropriately, e.g., show a user-friendly message
             }
         }
-
-
     },
 
     mounted() {
