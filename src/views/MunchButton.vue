@@ -8,32 +8,32 @@ export default {
         },
         getIcons() {
             return [
-                { index: 0, src: "/src/components/icons/pizza.png", route: "pizza" },
+                { index: 0, src: "/public/icons/pizza.png", route: "pizza" },
                 {
                     index: 1,
-                    src: "/src/components/icons/hamburger.png",
+                    src: "/public/icons/hamburger.png",
                     route: "hamburger",
                 },
                 {
                     index: 2,
-                    src: "/src/components/icons/tortilla.png",
+                    src: "/public/icons/tortilla.png",
                     route: "tortilla",
                 },
-                { index: 3, src: "/src/components/icons/hotdog.png", route: "hotdog" },
+                { index: 3, src: "/public/icons/hotdog.png", route: "hotdog" },
                 {
                     index: 4,
-                    src: "/src/components/icons/frenchfries.png",
+                    src: "/public/icons/frenchfries.png",
                     route: "frenchfries",
                 },
-                { index: 5, src: "/src/components/icons/steak.png", route: "steak" },
-                { index: 6, src: "/src/components/icons/sushi.png", route: "sushi" },
-                { index: 7, src: "/src/components/icons/fruit.png", route: "fruit" },
+                { index: 5, src: "/public/icons/steak.png", route: "steak" },
+                { index: 6, src: "/public/icons/sushi.png", route: "sushi" },
+                { index: 7, src: "/public/icons/fruit.png", route: "fruit" },
                 {
                     index: 8,
-                    src: "/src/components/icons/dessert.png",
+                    src: "/public/icons/dessert.png",
                     route: "dessert",
                 },
-                { index: 9, src: "/src/components/icons/cola.png", route: "cola" },
+                { index: 9, src: "/public/icons/cola.png", route: "cola" },
             ];
         },
     },
@@ -53,7 +53,7 @@ export default {
         <div class="left-piece">
             <div class="menu" ref="menu">
                 <div class="toggle" ref="toggle" @click="toggleMenu">
-                    <img src="/src/components/icons/scooter.png" />
+                    <img src="/public/icons/scooter.png" />
                 </div>
                 <li v-for="icon in getIcons()" :key="icon.index" :style="{ '--i': icon.index }">
                     <router-link :to="`/${icon.route}`">

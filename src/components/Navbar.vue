@@ -61,7 +61,7 @@ export default {
   <nav v-if="shouldShowNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 70px">
     <div class="container">
       <router-link to="/" class="logo-link">
-        <img src="\src\components\icons\donut2.png" alt="Logo" class="h-12" width="55" height="55" />
+        <img src="\public\icons\donut2.png" alt="Logo" class="h-12" width="55" height="55" />
       </router-link>
       <span>
         <h3>Munchtique</h3>
@@ -108,7 +108,7 @@ export default {
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="navbarDropdownMenuLink"
               role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="/src/components/icons/profile.png" class="rounded-circle" height="30" alt="" loading="lazy" />
+              <img src="/public/icons/profile.png" class="rounded-circle" height="30" alt="" loading="lazy" />
               <span class="ms-2">{{ username }}</span>
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
