@@ -62,6 +62,11 @@ export default createStore({
     setTotalPrice(state, price) {
       state.totalPrice = price;
     },
+    setUserField(state, { field, value }) {
+      if (state.user) {
+          state.user[field] = value;
+      }
+  },
   },
   actions: {
     addToCart({ commit, state }, item) {

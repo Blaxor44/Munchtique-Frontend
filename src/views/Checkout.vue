@@ -90,7 +90,7 @@
 
 <script>
 import axios from 'axios';
-import { ref, computed } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
@@ -111,6 +111,19 @@ export default {
         const cardNumber = ref('');
         const expiryDate = ref('');
         const cvv = ref('');
+
+        // Watch Vuex user state and update local properties
+        watch(
+            () => store.state.user,
+            (newUser) => {
+                if (newUser) {
+                    fullName.value = newUser.fullName || '';
+                    email.value = newUser.email || '';
+                    phone.value = newUser.phone || '';
+                }
+            },
+            { immediate: true }
+        );
 
         const cartItems = computed(() => store.getters.cartItems);
         const totalPrice = computed(() => store.getters.totalPrice);

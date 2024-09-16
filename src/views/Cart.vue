@@ -22,13 +22,14 @@
 
         <div class="total-container">
             <h3 class="total-price">Total: ${{ totalPrice.toFixed(2) }}</h3>
-            <router-link to="/checkout" class="checkout-button">Checkout</router-link>
+            <button @click="handleCheckout" class="checkout-button">Checkout</button>
         </div>
     </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default {
     data() {
@@ -55,6 +56,13 @@ export default {
                 alert('Invalid code or code already applied.');
             }
             this.discountCode = ''; // Clear discount code field after applying
+        },
+        handleCheckout() {
+            if (this.cartItems.length === 0) {
+                alert('Your cart is empty. Add items to the cart before proceeding to checkout.');
+            } else {
+                this.$router.push('/checkout').catch(err => console.error('Redirection error:', err));
+            }
         }
     }
 };
