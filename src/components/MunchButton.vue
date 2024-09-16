@@ -8,7 +8,7 @@ export default {
     },
     getIcons() {
       return [
-        { index: 0, src: "/src/components/icons/pizza.png", route: "Pizza" },
+        { index: 0, src: require('@/components/icons/pizza.png'), route: "Pizza" },
         { index: 1, src: "/src/components/icons/hamburger.png", route: "Burger" },
         { index: 2, src: "/src/components/icons/tortilla.png", route: "Wrap" },
         { index: 3, src: "/src/components/icons/hotdog.png", route: "Hotdog" },
@@ -34,7 +34,7 @@ export default {
   <div class="wrapper">
     <div class="menu" ref="menu">
       <div class="toggle" ref="toggle" @click="toggleMenu">
-        <img src="/src/components/icons/scooter.png" />
+        <img src="/src/components/icons/donut2.png" />
       </div>
       <li v-for="icon in getIcons()" :key="icon.index" :style="{ '--i': icon.index }">
         <router-link :to="`/menu/${icon.route}`">

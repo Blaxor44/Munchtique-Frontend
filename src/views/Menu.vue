@@ -75,7 +75,8 @@ export default {
       <div :class="['row', 'justify-content-center', { 'transitioning': isTransitioning }]">
         <div v-for="(item, index) in filteredItems" :key="index" class="col-lg-4 col-md-6 mb-4">
           <div class="card h-100 text-center">
-            <img v-if="item.image" :src="item.image" class="card-img-top img-fluid" alt="Food Image">
+            <img v-if="item.image" :src="require(`/components/icons/${item.image}`)" class="card-img-top img-fluid"
+              alt="Food Image">
             <div class="card-body d-flex flex-column align-items-center">
               <h5 class="card-title mb-3" style="font-size: 1.5rem">{{ item.name }}</h5>
               <p class="card-text" style="font-size: 1.1rem">
