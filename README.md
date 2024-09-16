@@ -2,7 +2,7 @@
 
 
 ## Javni link na aplikaciju
-Web: [Munchtique]()
+Web: [Munchtique](https://munchtique-frontend.vercel.app/)
 
 ## Organizacija
 * [Sveučilište Jurja Dobrile u Puli](https://www.unipu.hr/)
