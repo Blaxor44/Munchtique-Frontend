@@ -1,4 +1,3 @@
-# munchtique-frontend
 # Munchtique
 
 
