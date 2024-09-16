@@ -30,33 +30,19 @@
 
         <!-- User Tabs -->
         <div class="user-tabs">
-            <button :class="{ active: activeTab === 'basic' }" @click="activeTab = 'basic'; fetchUser()">
+            <button :class="{ active: activeTab === 'basic' }" @click="setActiveTab('basic')">
                 Basic Info
-            </button>
-            <button :class="{ active: activeTab === 'history' }" @click="activeTab = 'history'; fetchPurchaseHistory()">
-                Purchase History
             </button>
         </div>
 
         <!-- User Content -->
         <div class="user-content">
-            <div v-if="activeTab === 'basic'">
+            <div v-if="activeTab === 'basic' && !loading">
                 <h3>Basic Info</h3>
                 <p><strong>Full Name:</strong> {{ user?.fullName }}</p>
                 <p><strong>Username:</strong> {{ user?.username }}</p>
                 <p><strong>Email:</strong> {{ user?.email }}</p>
                 <p><strong>Phone:</strong> {{ user?.phone }}</p>
-            </div>
-            <div v-if="activeTab === 'history'">
-                <h3>Purchase History</h3>
-                <ul v-if="purchaseHistory.length > 0">
-                    <li v-for="(item, index) in purchaseHistory" :key="index">
-                        <p><strong>Order ID:</strong> {{ item?._id }}</p>
-                        <p><strong>Date:</strong> {{ item?.timestamp }}</p>
-                        <p><strong>Total:</strong> ${{ item?.totalPrice }}</p>
-                    </li>
-                </ul>
-                <p v-else>No purchase history available.</p>
             </div>
         </div>
     </div>
@@ -76,10 +62,12 @@ export default {
             purchaseHistory: [],
             isEditing: false,
             activeTab: 'basic',
+            loading: false,
         };
     },
     methods: {
         async fetchUser() {
+            this.loading = true;
             try {
                 const response = await fetch('http://localhost:5000/api/user', {
                     headers: {
@@ -90,42 +78,20 @@ export default {
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Network response was not ok - ${response.status} ${response.statusText}`);
+                    throw new Error(`Error fetching user: ${response.statusText}`);
                 }
 
                 const data = await response.json();
                 this.user = data; // Assign fetched user data
-
-                // Optional: Initialize editUser for editing purposes
-                this.editUser = { ...this.user };
-
+                this.editUser = { ...this.user }; // Prepare data for editing
             } catch (error) {
                 console.error('Error fetching user data:', error);
-                // Handle error appropriately, e.g., show a user-friendly message
+                alert('An error occurred while fetching user data.');
+            } finally {
+                this.loading = false;
             }
         },
-        async fetchPurchaseHistory() {
-            try {
-                const response = await fetch('http://localhost:5000/api/purchase-history', {
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${localStorage.getItem('token')}`, // Include token if needed
-                    },
-                });
 
-                if (!response.ok) {
-                    throw new Error(`Network response was not ok - ${response.status} ${response.statusText}`);
-                }
-
-                const data = await response.json();
-                this.purchaseHistory = data; // Assign fetched purchase history
-
-            } catch (error) {
-                console.error('Error fetching purchase history:', error);
-                // Handle error appropriately, e.g., show a user-friendly message
-            }
-        },
 
         async updateUser() {
             const updatedUser = {
@@ -137,7 +103,7 @@ export default {
 
             try {
                 const response = await fetch('http://localhost:5000/api/user', {
-                    method: 'PUT', // Change POST to PUT
+                    method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${localStorage.getItem('token')}`, // Include token
@@ -146,20 +112,26 @@ export default {
                 });
 
                 if (!response.ok) {
-                    throw new Error(`Network response was not ok - ${response.status} ${response.statusText}`);
+                    throw new Error(`Error updating user: ${response.statusText}`);
                 }
 
                 const data = await response.json();
-
-                // Update both the user and editUser data with the latest user info
-                this.user = data.user; // Update user data with the updated user object
+                this.user = data.user; // Update user data with the latest user info
                 this.editUser = { ...this.user }; // Sync editUser with the updated user
-
                 this.isEditing = false; // Exit edit mode
-
             } catch (error) {
                 console.error('Error updating user data:', error);
-                // Handle error appropriately, e.g., show a user-friendly message
+                alert('An error occurred while updating user data.');
+            }
+        },
+
+        setActiveTab(tab) {
+            this.activeTab = tab;
+
+            if (tab === 'history') {
+                this.fetchPurchaseHistory();
+            } else if (tab === 'basic') {
+                this.fetchUser();
             }
         }
     },
@@ -169,6 +141,7 @@ export default {
     },
 };
 </script>
+
 
 <style scoped>
 .user-info-container {

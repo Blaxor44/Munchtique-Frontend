@@ -33,6 +33,7 @@ export default createStore({
     },
     clearCart(state) {
       state.cart = [];
+      localStorage.removeItem('cart'); // Also clear cart from localStorage
     },
     setDiscountCode(state, code) {
       state.discountCode = code;
@@ -108,48 +109,9 @@ export default createStore({
     initializeApp({ dispatch }) {
       dispatch('loadStoredState');
     },
-
-    async checkout({ state, commit }) {
-      const token = localStorage.getItem('token');
-      
-      // Construct the payload
-      const payload = {
-        fullName: state.user.fullName,
-        email: state.user.email,
-        phone: state.user.phone,
-        address: state.checkoutAddress,
-        city: state.checkoutCity,
-        postalCode: state.checkoutPostalCode,
-        paymentMethod: state.paymentMethod,
-        cardDetails: state.paymentMethod === 'card' ? {
-          cardNumber: state.cardNumber,
-          expiryDate: state.expiryDate,
-          cvv: state.cvv
-        } : null,
-        items: state.cart,
-        totalPrice: state.totalPrice
-      };
-  
-      try {
-        const response = await axios.post('http://localhost:5000/api/checkout', payload, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-          }
-        });
-        
-        if (response.status === 200) {
-          // Handle successful checkout
-          commit('clearCart');
-          alert('Order placed successfully!');
-        } else {
-          alert('Error placing order. Please try again.');
-        }
-      } catch (error) {
-        console.error('Error placing order:', error);
-        alert('Error placing order. Please try again.');
-      }
-    },
+    clearCart({ commit }) {
+      commit('clearCart'); // Commit the clearCart mutation
+    }
   },
   getters: {
     cartItems: state => state.cart,
@@ -165,3 +127,4 @@ export default createStore({
     getUser: state => state.user,
   },
 });
+

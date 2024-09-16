@@ -17,10 +17,10 @@ export default {
 
     const username = computed(() => store.state.user ? store.state.user.username : null);
 
+    // This computed property determines whether to show the navbar based on the route
     const shouldShowNavbar = computed(() => {
-      const excludedRoutes = [];
-      const currentPath = route.path;
-      return !excludedRoutes.includes(currentPath);
+      const excludedRoutes = ['/login', '/signup']; // Hide navbar on login and signup pages
+      return !excludedRoutes.includes(route.path);
     });
 
     const handleLogout = () => {
@@ -48,7 +48,7 @@ export default {
       filteredItems,
       showItems,
       username,
-      shouldShowNavbar,
+      shouldShowNavbar, // Return shouldShowNavbar to the template
       handleLogout,
       navigateToCategory,
     };
@@ -57,6 +57,7 @@ export default {
 </script>
 
 <template>
+  <!-- Only render the Navbar if shouldShowNavbar is true -->
   <nav v-if="shouldShowNavbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top" style="height: 70px">
     <div class="container">
       <router-link to="/" class="logo-link">
@@ -99,18 +100,6 @@ export default {
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link exact-active d-flex flex-column text-center" to="/login">
-              <i class="fas fa-briefcase fa-lg"></i>
-              <span class="small">Login</span>
-            </router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link exact-active d-flex flex-column text-center" to="/signup">
-              <i class="fas fa-comment-dots fa-lg"></i>
-              <span class="small">Signup</span>
-            </router-link>
-          </li>
-          <li class="nav-item">
             <router-link class="nav-link exact-active d-flex flex-column text-center" to="/cart">
               <i class="fas fa-bell fa-lg"></i>
               <span class="small">Cart</span>
@@ -136,6 +125,7 @@ export default {
     </div>
   </nav>
 </template>
+
 
 
 

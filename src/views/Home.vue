@@ -7,15 +7,17 @@
             <SideContent />
         </div>
     </div>
+    <Banner />
 </template>
 
 <script>
 import MunchButton from '@/components/MunchButton.vue';
 import SideContent from '@/components/SideContent.vue';
+import Banner from '@/components/Banner.vue';
 
 export default {
     components: {
-        MunchButton, SideContent
+        MunchButton, SideContent, Banner
     },
 }
 </script>

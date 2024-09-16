@@ -186,6 +186,7 @@ export default {
 
                 if (response.status === 200) {
                     await store.dispatch('clearCart');
+                    localStorage.setItem('cart', JSON.stringify([]));
                     alert('Order placed successfully!');
                     router.push('/thankyou');
                 } else {
