@@ -7,7 +7,7 @@
             <div class="card-body p-5 text-center">
               <div class="mb-md-5 mt-md-4 pb-5">
                 <p class="navbar-brand">
-                  <img src="/public/icons/donut2.png" alt="Logo" class="h-12" width="75" height="75" />
+                  <img src="/icons/donut2.png" alt="Logo" class="h-12" width="75" height="75" />
                 </p>
                 <h2 class="fw-bold mb-2 text-uppercase">Sign up</h2>
                 <p class="text-white-50 mb-5">Create your account</p>

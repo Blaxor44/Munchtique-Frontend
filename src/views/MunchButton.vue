@@ -8,32 +8,32 @@ export default {
         },
         getIcons() {
             return [
-                { index: 0, src: "/public/icons/pizza.png", route: "pizza" },
+                { index: 0, src: "/icons/pizza.png", route: "pizza" },
                 {
                     index: 1,
-                    src: "/public/icons/hamburger.png",
+                    src: "/icons/hamburger.png",
                     route: "hamburger",
                 },
                 {
                     index: 2,
-                    src: "/public/icons/tortilla.png",
+                    src: "/icons/tortilla.png",
                     route: "tortilla",
                 },
-                { index: 3, src: "/public/icons/hotdog.png", route: "hotdog" },
+                { index: 3, src: "/icons/hotdog.png", route: "hotdog" },
                 {
                     index: 4,
-                    src: "/public/icons/frenchfries.png",
+                    src: "/icons/frenchfries.png",
                     route: "frenchfries",
                 },
-                { index: 5, src: "/public/icons/steak.png", route: "steak" },
-                { index: 6, src: "/public/icons/sushi.png", route: "sushi" },
-                { index: 7, src: "/public/icons/fruit.png", route: "fruit" },
+                { index: 5, src: "/icons/steak.png", route: "steak" },
+                { index: 6, src: "/icons/sushi.png", route: "sushi" },
+                { index: 7, src: "/icons/fruit.png", route: "fruit" },
                 {
                     index: 8,
-                    src: "/public/icons/dessert.png",
+                    src: "/icons/dessert.png",
                     route: "dessert",
                 },
-                { index: 9, src: "/public/icons/cola.png", route: "cola" },
+                { index: 9, src: "/icons/cola.png", route: "cola" },
             ];
         },
     },
@@ -53,7 +53,7 @@ export default {
         <div class="left-piece">
             <div class="menu" ref="menu">
                 <div class="toggle" ref="toggle" @click="toggleMenu">
-                    <img src="/public/icons/scooter.png" />
+                    <img src="/icons/scooter.png" />
                 </div>
                 <li v-for="icon in getIcons()" :key="icon.index" :style="{ '--i': icon.index }">
                     <router-link :to="`/${icon.route}`">

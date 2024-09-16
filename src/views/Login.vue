@@ -63,7 +63,7 @@ export default {
           <div class="card bg-dark text-white" style="border-radius: 1rem;">
             <div class="card-body p-5 text-center">
               <p class="navbar-brand">
-                <img src="/public/icons/donut2.png" alt="Logo" class="h-12" width="75" height="75" />
+                <img src="/icons/donut2.png" alt="Logo" class="h-12" width="75" height="75" />
               </p>
               <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
               <p class="text-white-50 mb-5">Please enter your email and password!</p>

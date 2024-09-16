@@ -6,7 +6,7 @@
         Doorstep in Minutes
       </p>
     </div>
-    <img src="\public\icons\fast-food.png" height="500" width="600" class="side-image" />
+    <img src="\icons\fast-food.png" height="500" width="600" class="side-image" />
   </div>
 </template>
 
