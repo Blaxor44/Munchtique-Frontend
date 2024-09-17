@@ -69,7 +69,7 @@ export default {
         async fetchUser() {
             this.loading = true;
             try {
-                const response = await fetch('https://api.render.com/deploy/srv-crkk5jg8fa8c738fk830?key=5I3Xm2Y_L20/user', {
+                const response = await fetch('https://api.render.com/deploy/srv-crkk5jg8fa8c738fk830?key=5I3Xm2Y_L20/api/user', {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
