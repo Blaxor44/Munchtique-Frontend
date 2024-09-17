@@ -91,7 +91,7 @@ export default {
       validatePasswords();
       if (!passwordError.value) {
         try {
-          const response = await axios.post('https://api.render.com/deploy/srv-crkk5jg8fa8c738fk830?key=5I3Xm2Y_L20/users/register', {
+          const response = await axios.post('https://munchtique-backend.onrender.com/users/register', {
             email: email.value,
             username: username.value,
             password: password.value,

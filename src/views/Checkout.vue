@@ -189,7 +189,7 @@ export default {
                     console.error('No token found');
                     return; // Stop execution if the token is missing
                 }
-                const response = await axios.post('https://api.render.com/deploy/srv-crkk5jg8fa8c738fk830?key=5I3Xm2Y_L20/checkout', payload, {
+                const response = await axios.post('https://munchtique-backend.onrender.com/checkout', payload, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json',
