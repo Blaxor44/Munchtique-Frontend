@@ -189,7 +189,7 @@ export default {
                     console.error('No token found');
                     return; // Stop execution if the token is missing
                 }
-                const response = await axios.post('https://munchrestapi.onrender.com/api/checkout', payload, {
+                const response = await axios.post('https://munchrestapi.onrender.com/checkout', payload, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json',
