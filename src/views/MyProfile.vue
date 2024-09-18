@@ -69,7 +69,7 @@ export default {
         async fetchUser() {
             this.loading = true;
             try {
-                const response = await fetch('https://munchrestapi.onrender.com/user', {
+                const response = await fetch('https://munchrestapi.onrender.com/api/user', {
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json',
