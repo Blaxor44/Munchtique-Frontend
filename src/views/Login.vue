@@ -22,7 +22,7 @@ export default {
     const handleSubmit = async () => {
       try {
         console.log('Submitting login...');
-        const response = await axios.post('https://munchtique-backend.onrender.com/users/login', {
+        const response = await axios.post('https://munchrestapi.onrender.com/users/login', {
           email: email.value,
           password: password.value,
         });
