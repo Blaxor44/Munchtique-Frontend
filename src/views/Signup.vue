@@ -91,7 +91,7 @@ export default {
       validatePasswords();
       if (!passwordError.value) {
         try {
-          const response = await axios.post('https://munchrestapi.onrender.com/users/register', {
+          const response = await axios.post('https://munchrestapi.onrender.com/api/users/register', {
             email: email.value,
             username: username.value,
             password: password.value,
